@@ -1,0 +1,26 @@
+{
+  "name": "wikistead-docs",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "node scripts/pull-generated.mjs && node scripts/check-ee-badges.mjs && astro build",
+    "preview": "astro preview",
+    "pull:generated": "node scripts/pull-generated.mjs",
+    "check:ee-badges": "node scripts/check-ee-badges.mjs",
+    "license:check": "node scripts/check-licenses.mjs"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "^0.41.7",
+    "@fontsource/inter": "^5.3.0",
+    "@fontsource/noto-sans-jp": "^5.3.0",
+    "@fontsource/plus-jakarta-sans": "^5.2.8",
+    "astro": "^7.2.1"
+  },
+  "pnpm": {
+    "overrides": {
+      "sharp": "-"
+    }
+  }
+}

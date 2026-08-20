@@ -1,0 +1,51 @@
+---
+title: Wikistead Documentation
+description: A collaborative knowledge base — share a link, anyone edits together. Markdown-first, open formats, self-hostable.
+template: splash
+hero:
+  title: Knowledge, written together
+  tagline: Share a link and anyone edits with you, live — no accounts. Markdown-first, open formats, self-hostable.
+  image:
+    file: ../../assets/editor-live-preview.png
+    alt: The Wikistead live-preview editor rendering Markdown as you type
+  actions:
+    - text: Get started
+      link: /getting-started/first-steps/
+      icon: right-arrow
+    - text: Self-hosting
+      link: /getting-started/self-hosting/
+      variant: minimal
+    - text: GitHub
+      link: https://github.com/wikistead/wikistead
+      icon: github
+      variant: minimal
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components'
+
+<CardGrid stagger>
+  <Card title="Editor" icon="pencil">
+    One live-preview surface: callouts, tables, diagrams and tasks render in place while the page stays plain Markdown. Vim included.
+    [Editor guides →](/editor/callouts/)
+  </Card>
+  <Card title="Collaborate" icon="comment-alt">
+    Share links are the whole onboarding — guests co-edit in real time under the link's capability, revocable in one move.
+    [Share links →](/guides/share-links/)
+  </Card>
+  <Card title="Organise" icon="open-book">
+    Spaces, a tree that scales, templates, revisions — and pages that link themselves when you mention them.
+    [Pages & spaces →](/guides/pages/)
+  </Card>
+  <Card title="Publish" icon="rocket">
+    Private, team, public or a static export on your own domain: publishing is a setting, not a migration.
+    [Publishing →](/publishing/public-spaces/)
+  </Card>
+  <Card title="Administer" icon="setting">
+    Members, roles, sign-in methods and second factors, API keys, webhooks — each surface opens to exactly who may enter it.
+    [Admin →](/admin/)
+  </Card>
+  <Card title="Reference" icon="information">
+    Generated straight from the released code: entitlement levers, domain events, account settings.
+    [Reference →](/reference/)
+  </Card>
+</CardGrid>

@@ -1,0 +1,19 @@
+# Docs-site CI (ADR-225 §5): install → licence gate → EE-badge reconciliation → full static build.
+# The pull step runs inside `pnpm build`; without SOURCE_REPO_URL it keeps the committed snapshot
+# and says so — day-1 green with no external credentials.
+name: ci
+on:
+  push:
+  pull_request:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with: { version: 10 }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: pnpm }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm license:check
+      - run: pnpm build

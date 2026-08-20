@@ -1,0 +1,119 @@
+/* #706: Starlight wears the product's brand. The tokens come from the PULLED brand kit
+   (src/styles/brand-tokens.css — generated from apps/web tokens.css, both themes), the faces from
+   the pulled woff2 (public/brand/fonts). Nothing here invents a colour: every value is a --wks-*
+   reference, so a product token change re-skins the docs at the next SOURCE_TAG pull. */
+@import './brand-tokens.css';
+
+/* Plus Jakarta Sans (the brand face) comes from @fontsource via customCss entries; these two are
+   the product's self-hosted faces, pulled from the source at the pinned tag. */
+@font-face {
+  font-family: 'UDEV Gothic';
+  src: url('/brand/fonts/udevgothic-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'UDEV Gothic';
+  src: url('/brand/fonts/udevgothic-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Wikistead Mono';
+  src: url('/brand/fonts/wikistead-mono-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Wikistead Mono';
+  src: url('/brand/fonts/wikistead-mono-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+}
+
+/* Type (#709, superseding the earlier hand-picked chain): both of Starlight's typography knobs BIND
+   to the pulled kit's type tokens — the docs never name a face themselves. The product's body/UI
+   chain (Inter + Noto Sans JP) and code face (Wikistead Mono) arrive with the next pull the moment
+   the product changes them; the faces themselves ship via @fontsource (astro.config customCss),
+   the same delivery the product uses. */
+:root {
+  --sl-font: var(--wks-font);
+  --sl-font-mono: var(--wks-font-mono);
+}
+
+/* The site title is the one wordmark on the page — it wears the wordmark-ONLY token, exactly like
+   the product's BrandLockup (CSS text beside the mark; no component override involved). */
+.site-title span {
+  font-family: var(--wks-font-wordmark);
+}
+
+/* Colour: the product's dark palette (Starlight's :root is the dark theme)… */
+:root {
+  --sl-color-accent-low: color-mix(in oklab, var(--wks-accent) 25%, var(--wks-bg));
+  --sl-color-accent: var(--wks-accent);
+  --sl-color-accent-high: color-mix(in oklab, var(--wks-accent) 65%, var(--wks-fg));
+  --sl-color-white: var(--wks-fg);
+  --sl-color-gray-1: var(--wks-fg);
+  --sl-color-gray-2: var(--wks-fg-dim);
+  --sl-color-gray-3: var(--wks-fg-dim);
+  --sl-color-gray-4: var(--wks-border);
+  --sl-color-gray-5: var(--wks-panel-3);
+  --sl-color-gray-6: var(--wks-panel);
+  --sl-color-black: var(--wks-bg);
+  --sl-color-bg: var(--wks-bg);
+  --sl-color-bg-nav: var(--wks-panel);
+  --sl-color-bg-sidebar: var(--wks-panel);
+  --sl-color-hairline: var(--wks-border);
+  --sl-color-hairline-light: var(--wks-border);
+  --sl-color-hairline-shade: var(--wks-border);
+}
+/* …and the light palette rides the SAME --wks tokens: brand-tokens.css swaps their values under
+   :root vs :root[data-theme='dark'], but Starlight's light selector must re-state the mapping so
+   its own light defaults do not win. */
+:root[data-theme='light'] {
+  --sl-color-accent-low: color-mix(in oklab, var(--wks-accent) 12%, var(--wks-bg));
+  --sl-color-accent: var(--wks-accent);
+  --sl-color-accent-high: color-mix(in oklab, var(--wks-accent) 75%, var(--wks-fg));
+  --sl-color-white: var(--wks-fg);
+  --sl-color-gray-1: var(--wks-fg);
+  --sl-color-gray-2: var(--wks-fg-dim);
+  --sl-color-gray-3: var(--wks-fg-dim);
+  --sl-color-gray-4: var(--wks-border);
+  --sl-color-gray-5: var(--wks-panel-3);
+  --sl-color-gray-6: var(--wks-panel);
+  --sl-color-gray-7: var(--wks-panel-2);
+  --sl-color-black: var(--wks-bg);
+  --sl-color-bg: var(--wks-bg);
+  --sl-color-bg-nav: var(--wks-panel);
+  --sl-color-bg-sidebar: var(--wks-panel);
+  --sl-color-hairline: var(--wks-border);
+  --sl-color-hairline-light: var(--wks-border);
+  --sl-color-hairline-shade: var(--wks-border);
+}
+
+/* The EE badge: the brand accent as an outline chip, distinct from every content aside. The badge
+   MECHANISM (catalog edition → wikisteadEeLevers → check-ee-badges) is untouched — this is dress. */
+.sl-badge {
+  font-family: var(--sl-font-mono);
+  letter-spacing: 0.04em;
+}
+
+/* The EE chips (sidebar + heading badges carry variant=tip; this site uses tip badges for EE only)
+   wear the brand accent, not Starlight's default purple. */
+.sl-badge.tip {
+  --sl-color-badge-tip-border: var(--wks-accent);
+  --sl-color-badge-tip-bg: transparent;
+  --sl-color-badge-tip-text: var(--wks-accent);
+  border: 1px solid var(--wks-accent);
+  background: transparent;
+  color: var(--wks-accent);
+}
+
+/* Tip asides (the EE notice among them) follow the accent as well — no stray purple. */
+.starlight-aside--tip {
+  --sl-color-asides-border: var(--wks-accent);
+  border-color: var(--wks-accent);
+  background: color-mix(in oklab, var(--wks-accent) 10%, var(--wks-bg));
+  color: var(--wks-fg);
+}
+.starlight-aside--tip .starlight-aside__title { color: var(--wks-accent); }
