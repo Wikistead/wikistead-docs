@@ -16,7 +16,7 @@ This capability ships in the Cloud/Enterprise edition. This page describes what 
 
 ## What it does
 
-An entitled workspace issues a **SCIM token** and points its identity provider's provisioning at Wikistead's SCIM 2.0 endpoints. From then on the directory drives the roster:
+**Admin → SCIM** is where an entitled workspace issues a **SCIM token** and points its identity provider's provisioning at Wikistead's SCIM 2.0 endpoints. From then on the directory drives the roster:
 
 - A person added to the app in your IdP **becomes a member** without an invite.
 - A person removed there is **deactivated** here — offboarding happens where HR already does it, not as a second checklist.

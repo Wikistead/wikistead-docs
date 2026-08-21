@@ -9,13 +9,13 @@
 //   - every declaring page carries the EE sidebar badge, in the en page and its ja mirror alike.
 import { readFileSync, readdirSync, statSync, existsSync } from 'node:fs'
 import { join, dirname, relative } from 'node:path'
+import { TRANSLATIONS, assertLocalesMatchConfig, localePath } from './locales.mjs'
 import { fileURLToPath } from 'node:url'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const docs = join(root, 'src/content/docs')
-// #748 renamed the generated page (internal words left the reference titles): the levers table now
-// lives in plan-contents.md, same row shape.
-const levers = readFileSync(join(docs, 'reference/generated/plan-contents.md'), 'utf8')
+assertLocalesMatchConfig() // #713: the guards and the served site must agree on the locale list
+const levers = readFileSync(join(docs, 'reference/plan-contents.md'), 'utf8')
 
 // A table row like: | **SAML SSO** (`samlSso`) | EE | …
 const eeLevers = new Set([...levers.matchAll(/\(`(\w+)`\)\s*\|\s*EE\s*\|/g)].map((m) => m[1]))
@@ -54,11 +54,14 @@ for (const p of pages) {
 for (const l of eeLevers) {
   const on = declared.get(l) ?? []
   if (on.length === 0) problems.push(`EE lever "${l}" is documented by NO page (add wikisteadEeLevers to its page)`)
-  // …and the ja mirror of every declaring en page declares too (both locales stay honest).
+  // …and EVERY translation of a declaring root page declares too (all locales stay honest).
+  // #713: the list comes from scripts/locales.mjs, so a third language is checked the day it is
+  // configured rather than the day somebody remembers this loop said `ja`.
   for (const rel of on) {
-    if (rel.startsWith('ja/')) continue
-    const jaPage = join(docs, 'ja', rel)
-    if (!existsSync(jaPage)) problems.push(`${rel}: declaring page has no ja counterpart`)
+    if (TRANSLATIONS.some((t) => rel.startsWith(`${t}/`))) continue
+    for (const t of TRANSLATIONS) {
+      if (!existsSync(localePath(docs, t, rel))) problems.push(`${rel}: declaring page has no ${t} mirror`)
+    }
   }
 }
 
@@ -67,4 +70,4 @@ if (problems.length) {
   for (const p of problems) console.error('  ' + p)
   process.exit(1)
 }
-console.log(`check-ee-badges OK — ${eeLevers.size} EE lever(s) documented and badged, both locales: ${[...eeLevers].join(', ')}.`)
+console.log(`check-ee-badges OK — ${eeLevers.size} EE lever(s) documented and badged, every locale: ${[...eeLevers].join(', ')}.`)

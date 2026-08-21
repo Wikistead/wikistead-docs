@@ -12,6 +12,9 @@ tags: [decision, infra]
 # Why we picked Postgres
 ```
 
+![A `:::tagged` list, gathering every page with that tag.](../../../assets/screenshots/tags.png)
+
+
 In the editor the frontmatter renders as a compact row of tag chips at the top of the page. Add and remove tags right on the chips (with suggestions from the tags already in use); put the caret inside the block to edit the raw YAML whenever you prefer. Other frontmatter fields you add by hand are preserved verbatim — Wikistead displays tags and leaves the rest of your metadata alone.
 
 ## Listing pages by tag

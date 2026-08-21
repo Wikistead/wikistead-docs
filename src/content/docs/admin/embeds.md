@@ -1,5 +1,5 @@
 ---
-title: Embeds policy
+title: Embeds
 ---
 
 **Admin → Embeds** (admins) holds the **allowlist of external hosts** that [`:::embed-external`](/editor/embeds/) may load. This list is the workspace's trust decision about third-party content:

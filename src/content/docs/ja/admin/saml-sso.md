@@ -8,18 +8,18 @@ wikisteadEeLevers:
   - samlSso
 ---
 
-SAML で組織の IdP からサインインします。
+組織の IdP から SAML でサインインできるようにします。
 
 :::tip[EE]
-この機能は Cloud/Enterprise エディションで提供されます。このページは「何ができるか」を書きます。どう作られているかはドキュメントの範囲外です。
+この機能は Cloud / Enterprise エディションで提供されます。このページでは何ができるかを説明します。内部のしくみについては扱いません。
 :::
 
 ## 何ができるか
 
-entitlement のあるワークスペースは、組織の SAML IdP をサインインの扉として登録できます：メンバーは IdP（Okta・Entra ID ほか SAML の世界）で認証し、Wikistead に到着します——ワークスペースローカルのパスワードは介在しません。設定はワークスペース単位で、他の[サインイン方法](/ja/admin/sign-in-methods/)と並びます。
+この機能を含むプランのワークスペースでは、組織の SAML IdP をサインインの入り口として登録できます。メンバーは IdP（Okta や Entra ID など）で認証してから Wikistead にサインインするため、ワークスペース専用のパスワードは不要です。設定はワークスペースごとで、他の[サインイン方法](/ja/admin/sign-in-methods/)と並びます。
 
-OIDC を話す IdP には、Enterprise エディションなしで [OIDC シングルサインオン](/ja/admin/sign-in-methods/)が使えます。SAML は、IdP やポリシーがそれを要求する組織のためにあります。
+IdP が OIDC に対応している場合は、Enterprise エディションでなくても [OIDC のシングルサインオン](/ja/admin/sign-in-methods/)を使えます。IdP や組織のポリシー上 SAML が必要な場合の選択肢です。
 
 ## 関連
 
-[SCIM プロビジョニング](/ja/admin/scim-provisioning/)と組み合わせると、メンバーをサインインさせるディレクトリが、作成と停止も行うようになります。
+[SCIM プロビジョニング](/ja/admin/scim-provisioning/)と組み合わせると、サインインだけでなくメンバーの作成と停止も IdP 側から行えるようになります。

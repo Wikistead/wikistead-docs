@@ -15,8 +15,8 @@ The raw secret is shown **once**, at creation. After that the console shows meta
 
 ## Limits and revocation
 
-Authenticated API traffic is rate-limited per key and per workspace (the values are plan levers — see the [entitlement levers](/reference/generated/entitlement-levers/)). Revoking a key is immediate.
+Authenticated API traffic is rate-limited per key and per workspace (the limits depend on the plan — see [what each plan includes](/reference/plan-contents/)). Revoking a key is immediate.
 
 ## Members' own keys
 
-Members can hold personal keys too, from [account settings](/settings/account/) — the workspace decides whether members may issue their own or only hold what admins minted. The REST API's canon is [`docs/api-reference.md`](https://github.com/wikistead/wikistead/blob/master/docs/api-reference.md) in the source repository.
+Members can hold personal keys too, from [account settings](/settings/account/) — the workspace decides whether members may issue their own or only hold what admins minted. The REST API's canon is [`docs/api-reference.md`](https://github.com/wikistead/wikistead/blob/main/docs/api-reference.md) in the source repository.

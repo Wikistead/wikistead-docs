@@ -9,11 +9,15 @@ export default defineConfig({
   // the image service is the passthrough one — if images ever need optimisation, that is a
   // licence-boundary decision to take deliberately, not a default to inherit.
   image: { service: passthroughImageService() },
-  site: 'https://docs.wikistead.example', // real apex decided with the LP before publishing (ADR-225 §Open 3)
+  // #180: `docs.<apex>` on the apex domain (`wikistead.com`), which is
+  // the split ADR-225 chose. Settled ahead of the hosting choice on purpose: this is the canonical
+  // origin every sitemap entry and every cross-page link is written against, and it is a fact about
+  // the domain rather than about which service ends up serving the built files.
+  site: 'https://docs.wikistead.com',
   integrations: [
     starlight({
       title: 'Wikistead Docs',
-      logo: { src: './src/assets/icon-solid.svg', alt: 'Wikistead' },
+      logo: { src: './src/assets/mark.svg', alt: 'Wikistead' }, // #709: the tile-less mark (icon-solid.svg has the tile baked in)
       favicon: '/favicon.svg',
       customCss: [
         // #709: the faces the KIT's type tokens name, delivered the same way the product delivers
@@ -34,11 +38,17 @@ export default defineConfig({
         root: { label: 'English', lang: 'en' },
         ja: { label: '日本語', lang: 'ja' },
       },
+      components: {
+        // #718: the generated references are English by design, not by
+        // backlog. The override says so; every other fallback keeps Starlight's wording.
+        FallbackContentNotice: './src/components/FallbackContentNotice.astro',
+      },
       sidebar: [
         { label: 'Getting started', translations: { ja: 'はじめる' }, items: [{ autogenerate: { directory: 'getting-started' } }] },
         { label: 'Editor', translations: { ja: 'エディタ' }, items: [{ autogenerate: { directory: 'editor' } }] },
         { label: 'Guides', translations: { ja: 'ガイド' }, items: [{ autogenerate: { directory: 'guides' } }] },
         { label: 'Publishing', translations: { ja: '公開' }, items: [{ autogenerate: { directory: 'publishing' } }] },
+        { label: 'Integrations', translations: { ja: '連携' }, items: [{ autogenerate: { directory: 'integrations' } }] },
         { label: 'Admin', translations: { ja: '管理' }, items: [{ autogenerate: { directory: 'admin' } }] },
         { label: 'Settings', translations: { ja: '設定' }, items: [{ autogenerate: { directory: 'settings' } }] },
         { label: 'Reference', translations: { ja: 'リファレンス' }, items: [{ autogenerate: { directory: 'reference' } }] },

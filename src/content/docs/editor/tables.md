@@ -13,6 +13,9 @@ Wikistead has two table forms, and moves between them for you: standard **GFM pi
 | Demo          | Rin   | draft  |
 ```
 
+![A pipe table on the read surface.](../../../assets/screenshots/tables.png)
+
+
 A pipe table renders as a real table in place, and you edit it with the mouse: click into a cell to type, and use the table controls to add or remove rows and columns. Every edit is committed per operation, so collaborators see each change as it happens.
 
 ## Rich tables — `:::table`

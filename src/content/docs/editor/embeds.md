@@ -12,6 +12,9 @@ Two directives bring outside content into a page: `:::embed-page` embeds **anoth
 :::
 ```
 
+![In the editor an embed is one selected block: the other page's content, managed as a single object rather than pasted text.](../../../assets/screenshots/embeds.png)
+
+
 The target page's content renders inside the current one and stays live — edit the source page and every embed follows. Two properties matter:
 
 - **Permission-checked per reader.** An embed never widens access: a reader who cannot view the target page sees nothing there, even if they can view the page containing the embed.

@@ -14,7 +14,7 @@ How you write and how you publish are separate decisions. The same page can stay
 
 ## Going public
 
-Public exposure is off until a workspace admin enables it (**Admin → Public**). With it enabled:
+Public exposure is off until a workspace admin enables it (**Admin → Public access**). With it enabled:
 
 - **Publish a page publicly** — the page becomes readable at its public URL, as its last *published* version.
 - **A public space** — the space's published, public pages appear as a read-only site with its own tree navigation.
@@ -28,7 +28,7 @@ Dynamic blocks (page lists, tag lists) render for anonymous readers as the snaps
 
 ## Custom domains
 
-A workspace can serve its public surface from its own domain (docs.your-company.com) — added and verified in the workspace's settings, where the deployment and plan allow it (see the [entitlement levers](/reference/generated/entitlement-levers/)).
+A workspace can serve its public surface from its own domain (docs.your-company.com) — added and verified in the workspace's settings, where the deployment and the plan allow it (see [what each plan includes](/reference/plan-contents/)).
 
 ## Getting everything out
 

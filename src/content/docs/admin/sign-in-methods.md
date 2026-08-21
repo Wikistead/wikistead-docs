@@ -1,8 +1,8 @@
 ---
-title: Sign-in methods
+title: Authentication
 ---
 
-**Admin → Sign-in methods** decides how members prove who they are. It opens to admins and to holders of the carved-out *manage connections* power.
+**Admin → Authentication** decides how members prove who they are. It opens to admins and to holders of the carved-out *manage connections* power.
 
 ## Doors
 
@@ -12,6 +12,14 @@ A workspace offers one or both doors:
 - **Single sign-on (OIDC)** — your organisation's identity provider; members sign in there and arrive here.
 
 The [sign-in screen](/guides/sign-in/) shows exactly the doors enabled here.
+
+### Naming a connection
+
+Every single sign-on connection you add carries a **name**, and that name is the button members press. Give it the word your organisation already uses for the provider ("Acme SSO", "Corp IdP") rather than a description of the technology — someone arriving at the sign-in screen has to recognise it before they press it.
+
+Connections created before names were required are marked on this screen until you give them one. They keep signing people in meanwhile; what they lack is a label, and the sign-in screen calls each of them the generic "single sign-on" until it has one, which reads the same for two of them.
+
+Google and Microsoft connections are the exception: they wear their own fixed branding and take no name.
 
 ## Second factors
 

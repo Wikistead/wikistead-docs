@@ -117,3 +117,70 @@
   color: var(--wks-fg);
 }
 .starlight-aside--tip .starlight-aside__title { color: var(--wks-accent); }
+
+/* #709: the hero image is the product, and it was being shown at 381px — a
+   0.53 shrink that put the app's 14px text at 7.4px. The image had been re-shot twice; the FRAME
+   never moved, and the frame is what caps the ratio. So the splash hero stacks instead of putting
+   the screenshot in a 4fr side column: the copy reads first, the product fills the column under it.
+
+   customCss ONLY (#706's property: this site overrides no Starlight component). `.hero > img` and
+   `.hero > .stack` are Starlight's own structure, not hashed classes, so this survives its updates
+   or fails visibly rather than silently sliding back to a corner. The measured guard is
+   scripts/check-hero-scale.mjs, which fails under a 0.85 ratio. */
+@media (min-width: 50rem) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .hero > .stack {
+    order: 1;
+    max-width: 55rem;
+    margin-inline: auto;
+  }
+  .hero > img,
+  .hero > .hero-html {
+    order: 2;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+}
+
+/* Below the stacked layout Starlight caps the hero image at 20rem, which put a tablet (768px) at a
+   0.32 ratio — the same defect as the desktop one, one breakpoint down. The cap goes at every width;
+   the frame is the column, whatever the column happens to be.
+
+   Under 30rem no frame can carry it: a phone gives the image ~350px for 1000px of app, and the
+   product's 14px text lands at ~5px. The standing rule for this hero (#706) is "if it cannot be made out,
+   better not to show it", so on phones it is not shown — the copy and the buttons are what a reader
+   on a phone came for anyway. The pin measures the widths where the image DOES appear. */
+.hero > img,
+.hero > .hero-html {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+@media (max-width: 30rem) {
+  .hero > img { display: none; }
+}
+
+/* The screenshot is a window onto the app, so it is framed like one — otherwise a white-backgrounded
+   capture bleeds into a white page and the edges of the product are unreadable (the #696 note). */
+.hero > img {
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 6%), 0 8px 24px rgb(0 0 0 / 8%);
+}
+
+/* The header mark is delivered as an <img>, and an <img> CANNOT inherit `currentColor` — the SVG is a
+   separate document, so its `stroke="currentColor"` resolves to that document's own initial colour,
+   black. In the product this asset is inlined by BrandLockup and inherits properly; here it does not,
+   and the measured result was a black mark on the near-black dark header.
+   Inverting the pure-black line art gives pure white, which is what the inlined version resolves to in
+   dark mode anyway. Light mode is left alone (black on white already carries). */
+:root[data-theme='dark'] .site-title img,
+:root[data-theme='dark'] header a[href='/'] img,
+:root[data-theme='dark'] header a[href='/ja/'] img {
+  filter: invert(1);
+}

@@ -26,6 +26,9 @@ Something destructive or irreversible.
 :::
 ```
 
+![The five types as a reader sees them, the last one carrying a label.](../../../assets/screenshots/callouts.png)
+
+
 ## Labels
 
 Any callout can carry a heading of its own, in square brackets on the opening line:

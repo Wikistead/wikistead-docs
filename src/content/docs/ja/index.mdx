@@ -3,8 +3,10 @@ title: Wikistead ドキュメント
 description: 共有リンクで誰でも同時編集できるナレッジベース。Markdown ファースト・オープンフォーマット・セルフホスト可能。
 template: splash
 hero:
-  title: 知識を、いっしょに書く
-  tagline: リンクを渡すだけで、アカウント不要のまま全員でリアルタイムに書けます。Markdown ファースト・オープンフォーマット・セルフホスト可能。
+  # #718: the previous title was a literal translation of the en hero and could have described any
+  # wiki. The LP settled this wording first (#696); the docs follow it.
+  title: AI 時代の、新しい Wiki。
+  tagline: リンクを渡すだけで、アカウント不要のまま全員でリアルタイムに書けます。Markdown のまま書けて、リンクでつながり、どこへでも公開できて、セルフホストもできます。
   image:
     file: ../../../assets/editor-live-preview.png
     alt: 入力と同時に Markdown が描画される Wikistead のライブプレビューエディタ
@@ -25,27 +27,27 @@ import { Card, CardGrid } from '@astrojs/starlight/components'
 
 <CardGrid stagger>
   <Card title="エディタ" icon="pencil">
-    単一のライブプレビュー面：コールアウト・テーブル・図・タスクがその場で描画され、ページは素の Markdown のまま。vim も使えます。
+    画面は 1 つだけ。コールアウトやテーブル、図、タスクがその場で描画され、ページの中身は素の Markdown のままです。Vim も使えます。
     [エディタガイド →](/ja/editor/callouts/)
   </Card>
   <Card title="共同編集" icon="comment-alt">
-    共有リンクがオンボーディングそのもの——ゲストはリンクの権限の範囲でリアルタイムに共同編集でき、失効は 1 操作です。
+    招待の手続きは要りません。リンクを渡せば、ゲストはその権限の範囲でリアルタイムに書けて、失効は 1 回の操作で済みます。
     [共有リンク →](/ja/guides/share-links/)
   </Card>
   <Card title="整理する" icon="open-book">
-    スペース・スケールする木構造・テンプレート・版履歴。ページ名に触れれば、それがリンクになります。
+    スペース、ページが増えても迷わないツリー、テンプレート、版の履歴。本文にページの名前を書けば、それがリンクになります。
     [ページとスペース →](/ja/guides/pages/)
   </Card>
   <Card title="公開する" icon="rocket">
-    非公開・チーム・公開・静的エクスポート——独自ドメインでも。公開は設定であって、引っ越しではありません。
+    非公開のまま使うことも、チームだけに、Web 全体に、静的サイトとして公開することもできます。独自ドメインにも対応します。
     [公開 →](/ja/publishing/public-spaces/)
   </Card>
   <Card title="管理する" icon="setting">
-    メンバー・ロール・サインイン方法と第 2 要素・API キー・webhook——各面は入れる人にだけ開きます。
+    メンバー、ロール、サインイン方法、2 要素認証、API キー、Webhook。どの画面も、権限を持つ人にだけ表示されます。
     [管理 →](/ja/admin/)
   </Card>
   <Card title="リファレンス" icon="information">
-    リリースされたコードから生成：エンタイトルメント・ドメインイベント・アカウント設定。
+    プランに含まれるもの、Webhook のイベント、アカウント設定の一覧です。
     [リファレンス →](/ja/reference/)
   </Card>
 </CardGrid>

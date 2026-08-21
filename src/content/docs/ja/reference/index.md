@@ -2,21 +2,23 @@
 title: リファレンス
 ---
 
-リファレンス節は**書かれたものではなく、生成されたもの**です：各ページは、当サイトが対象とする版のリリース済みコードからビルド時に抽出・取得されます。製品から乖離しえません——製品そのものの描画だからです。
+このサイトが対象にしているバージョンで、製品が持っているものの一覧です。
 
-## 生成リファレンス
+## リファレンス
 
-- **[Entitlement レバー](/ja/reference/generated/entitlement-levers/)** — すべての機能レバー：何を制御し、どこで強制され、ダウングレードで何が起き、セルフホストの Community では何に解決されるか。
-- **[ドメインイベント](/ja/reference/generated/domain-events/)** — [webhook](/ja/admin/webhooks/) が購読できるイベントの語彙。
-- **[アカウント設定](/ja/reference/generated/account-settings/)** — アカウント単位設定の完全カタログ。
+次の 3 つは**本文が英語のみ**です。
 
-## 手書きの記法リファレンス
+- **[プラン別の機能一覧](/ja/reference/plan-contents/)**（英語）：機能ごとに、制御する対象、効く場所、プランを下げたときの扱い、セルフホストの Community Edition での扱いが分かります。
+- **[Webhook のイベント](/ja/reference/webhook-events/)**（英語）：[Webhook](/ja/admin/webhooks/) で購読できるイベントの一覧です。
+- **[アカウント設定](/ja/reference/account-settings/)**（英語）：アカウントごとの設定の全一覧です。
 
-- **[マクロ記法](/ja/reference/macro-notation/)** — 組み込みマクロ全種の正典記法を 1 ページに。
+## 手で書いている記法リファレンス
 
-## 正典が別の場所にあるもの
+- **[マクロ記法](/ja/reference/macro-notation/)**：組み込みマクロの書き方を 1 ページにまとめています。
 
-2 つのリファレンスは*ソースリポジトリの中*にあり、コードと同じ版管理を受けます。意図的にここへ複製しません：
+## ソースリポジトリにある文書
 
-- **セルフホスティング** — [`docs/self-hosting.md`](https://github.com/wikistead/wikistead/blob/master/docs/self-hosting.md)（[セルフホスティング](/ja/getting-started/self-hosting/)参照）。
-- **REST API** — [`docs/api-reference.md`](https://github.com/wikistead/wikistead/blob/master/docs/api-reference.md)。
+次の 2 つはソースリポジトリの中にあり、コードと同じようにバージョン管理されています。このサイトに写しを置くと内容がずれていくため、あえて置いていません。
+
+- **セルフホスト**：[`docs/self-hosting.md`](https://github.com/wikistead/wikistead/blob/main/docs/self-hosting.md)（[セルフホスト](/ja/getting-started/self-hosting/)のページも参照してください）。
+- **REST API**：[`docs/api-reference.md`](https://github.com/wikistead/wikistead/blob/main/docs/api-reference.md)。

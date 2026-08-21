@@ -1,39 +1,29 @@
 # Wikistead documentation
 
-The public documentation site for [Wikistead](https://github.com/wikistead/wikistead) — built with
-[Astro](https://astro.build) + [Starlight](https://starlight.astro.build), fully static, English and
-Japanese from day one.
+The documentation site for [Wikistead](https://github.com/wikistead/wikistead), in English and
+Japanese. Built with [Astro](https://astro.build) and [Starlight](https://starlight.astro.build).
 
-## How this repo stays honest
-
-- **The site documents a released version, not the tip.** `SOURCE_TAG` pins the source tag;
-  `scripts/pull-generated.mjs` pulls the generated references (`docs/generated/*.md`) from that tag
-  at build time and fails on a torn pull once the source emits its `.source-version` marker. In the
-  dev overlay position (this repo cloned as `docs-site/` inside the source checkout) it copies from
-  the sibling working tree instead and says so.
-- **EE badges trace to the catalog.** `scripts/check-ee-badges.mjs` reconciles every page's
-  `wikisteadEeLevers` declaration against the generated entitlement-levers reference (derived from
-  the source catalog's `edition` field) — in both directions, in both locales. There is no
-  hand-kept list of EE features anywhere in this repo.
-- **EE pages describe WHAT a capability does, never how it is built.** Implementation and internal
-  design are out of scope for end-user docs.
-- **Nothing ships undocumented.** The source repository's CI walks its own registries (macros,
-  screens, admin surfaces) and fails when a registered surface has no docs binding — the bindings
-  name pages in this repo.
-
-## Commands
+## Developing
 
 ```
 pnpm install
-pnpm build      # pull generated refs → reconcile EE badges → astro build (en + ja)
 pnpm dev        # local preview
-pnpm license:check
+pnpm build      # production build (en + ja)
 ```
 
 ## Contributing
 
-Issues are welcome; pull requests are not accepted (same stance as the source repository).
+Bug reports and suggestions are welcome as issues. Pull requests are not accepted: this repository
+is a published snapshot, and merged changes would be overwritten when the site is next published. To
+contribute to Wikistead itself, see the source repository's
+[contributing guide](https://github.com/wikistead/wikistead/blob/main/CONTRIBUTING.md).
+
+Translations and mirrors of the documentation are welcome anywhere, under the terms of the
+content license below.
 
 ## License
 
-License to be added by the repository owner before publishing.
+The documentation content is licensed under
+[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/); the site code (scripts,
+configuration, components) is MIT. See [LICENSE.md](LICENSE.md). Neither license covers the
+Wikistead name or logo.

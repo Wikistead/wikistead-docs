@@ -17,7 +17,11 @@ Right side.
 :::
 ```
 
+
+
 Items sit side by side on wide screens. The container stays a stable frame while you edit: click a column to edit its content in place, and use the per-item controls to add or remove columns.
+
+![Two columns side by side, as a reader sees them.](../../../assets/screenshots/columns.png)
 
 ## Tabs
 
@@ -34,6 +38,8 @@ Instructions for Windows.
 
 Each `:::tab[Label]` becomes one tab; readers switch between them. Good for per-platform steps and before/after comparisons where only one variant matters at a time.
 
+![A tab strip: one variant visible, the others a click away.](../../../assets/screenshots/tabs.png)
+
 ## Details (disclosure)
 
 ```md
@@ -43,6 +49,8 @@ The long answer, collapsed by default.
 ```
 
 A collapsible section with the label as its summary line — the standard place for an aside too long to inline.
+
+![A collapsed disclosure block, closed by default.](../../../assets/screenshots/details.png)
 
 ## Editing model
 

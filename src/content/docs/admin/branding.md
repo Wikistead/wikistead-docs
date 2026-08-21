@@ -7,4 +7,4 @@ title: Branding
 Two boundaries worth knowing:
 
 - **Personal theme is never branding.** Each member's light/dark/system choice ([account settings](/settings/account/)) always works — branding shapes the workspace's identity, not the reader's eyes.
-- **Where custom branding is a plan lever** (see the [entitlement levers](/reference/generated/entitlement-levers/)), an unentitled workspace shows the default look; your uploaded values are kept, and reappear on upgrade rather than being destroyed.
+- **Where a plan does not include custom branding** (see [what each plan includes](/reference/plan-contents/)), the workspace shows the default look; your uploaded values are kept, and reappear on upgrade rather than being destroyed.

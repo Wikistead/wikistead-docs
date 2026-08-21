@@ -19,7 +19,11 @@ import { mkdtempSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
-const DEST = join(root, 'src/content/docs/reference/generated')
+// #748 (owner ruling): the pages land in `reference/` itself. `generated/` described HOW they are
+// made, which is our concern, not the reader's — and it pushed every one of these pages behind a
+// word that tells them nothing about the contents. That they are generated is worth saying, so each
+// page says it, in a sentence, where it reads as the reassurance it is.
+const DEST = join(root, 'src/content/docs/reference')
 const sourceTag = existsSync(join(root, 'SOURCE_TAG')) ? readFileSync(join(root, 'SOURCE_TAG'), 'utf8').trim() : null
 
 // Wrap a pulled Markdown file as a Starlight page (the generated files carry an H1, not frontmatter).
@@ -29,7 +33,12 @@ function toPage(src, dest) {
   const m = raw.match(/^#\s+(.+)$/m)
   const title = m ? m[1] : 'Generated reference'
   const body = m ? raw.replace(m[0], '') : raw
-  writeFileSync(dest, `---\ntitle: ${JSON.stringify(title)}\n---\n\n${body}`)
+  // #748 (owner ruling): the page SAYS it is generated, rather than living behind a folder called
+  // `generated/`. The folder told the reader how we make the page — our concern, and a word that gave
+  // them no clue what was inside. Said here instead, it reads as what it actually is: a reason to
+  // trust the page, because it cannot drift from the product without CI noticing.
+  const provenance = ':::note\nThis page is generated from the product\u2019s source, so it cannot drift from what the software actually does.\n:::'
+  writeFileSync(dest, `---\ntitle: ${JSON.stringify(title)}\n---\n\n${provenance}\n${body}`)
 }
 
 // #706: the brand kit rides the same pull — tokens to the stylesheet layer, the mark to public/
@@ -39,12 +48,27 @@ const BRAND = [
   { from: 'brand/tokens.css', to: 'src/styles/brand-tokens.css' },
   { from: 'brand/favicon.svg', to: 'public/favicon.svg' },
   { from: 'brand/icon-solid.svg', to: 'src/assets/icon-solid.svg' },
+  // #709: the HEADER mark is the tile-less line mark, the same asset the
+  // product's own header uses. `icon-solid.svg` carries a filled `<rect>` tile inside the asset, so
+  // no amount of CSS removes the box the user asked about — the fix is choosing the other mark. It
+  // rides the kit rather than being hand-copied, so it cannot drift from the released product.
+  { from: 'brand/favicon.svg', to: 'src/assets/mark.svg' },
   { from: 'brand/fonts/udevgothic-Regular.woff2', to: 'public/brand/fonts/udevgothic-Regular.woff2' },
   { from: 'brand/fonts/udevgothic-Bold.woff2', to: 'public/brand/fonts/udevgothic-Bold.woff2' },
   { from: 'brand/fonts/wikistead-mono-Regular.woff2', to: 'public/brand/fonts/wikistead-mono-Regular.woff2' },
   { from: 'brand/fonts/wikistead-mono-Bold.woff2', to: 'public/brand/fonts/wikistead-mono-Bold.woff2' },
   { from: 'brand/fonts/LICENSE-UDEVGothic.txt', to: 'public/brand/fonts/LICENSE-UDEVGothic.txt' },
   { from: 'brand/fonts/LICENSE-SourceCodePro.txt', to: 'public/brand/fonts/LICENSE-SourceCodePro.txt' },
+  // #731: the admin console's tab labels, as the PRODUCT spells them. Not a page — a table the
+  // build checks the admin pages against (scripts/check-admin-tab-names.mjs), so the documentation
+  // can be wrong about a name and be told so, instead of the two vocabularies drifting in separate
+  // repositories the way they did.
+  { from: 'admin-tabs.json', to: 'src/content/generated/admin-tabs.json' },
+  // #741: each screen's ACTIONS and STATES, as the product spells them. #731's table covers the tab
+  // names and nothing below them — the button a reader must press, the badge that says what state a
+  // row is in. Same reason it is pulled rather than written here: the words move when the product
+  // renames them, and a copy would go red for being right.
+  { from: 'screen-vocabulary.json', to: 'src/content/generated/screen-vocabulary.json' },
 ]
 
 function importFrom(dir, label) {

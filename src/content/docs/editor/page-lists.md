@@ -9,6 +9,9 @@ title: Page lists
 :::
 ```
 
+![In the editor the child list is one selected block, which is how you can tell it is generated rather than typed.](../../../assets/screenshots/page-lists.png)
+
+
 The body is empty: there is nothing to configure. Create or move a child page and the list follows; delete one and it disappears.
 
 ## Properties

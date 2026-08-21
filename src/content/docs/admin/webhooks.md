@@ -6,7 +6,7 @@ title: Webhooks
 
 ## Events
 
-The subscribable vocabulary is the workspace's **domain events** — page published, member joined, and the rest. The complete list is generated from the released code: [domain events reference](/reference/generated/domain-events/). New product features arrive with their events; the reference moves with the release.
+What you can subscribe to is the things that happen in a workspace — a page published, a member joined, and the rest. The complete list is [webhook events](/reference/webhook-events/). New product features arrive with their events.
 
 ## What is never emitted
 
@@ -14,4 +14,4 @@ Webhooks respect visibility: **drafts and private content do not produce events*
 
 ## Operating
 
-Each hook shows its delivery state; a hook you disable stops receiving without being forgotten. Where webhooks are a plan lever, creation is gated but already-created hooks keep delivering (see [entitlement levers](/reference/generated/entitlement-levers/)).
+Each hook shows its delivery state; a hook you disable stops receiving without being forgotten. Where a plan does not include webhooks, creating one is gated but hooks that already exist keep delivering (see [what each plan includes](/reference/plan-contents/)).

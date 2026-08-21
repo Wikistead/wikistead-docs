@@ -11,6 +11,9 @@ Task lists are standard GFM — and the checkboxes are **interactive**: any read
 - [ ] ship it
 ```
 
+![A checklist on the read surface; the boxes are clickable there too.](../../../assets/screenshots/tasks.png)
+
+
 ## The progress ring — `:::todo`
 
 Wrap a task list in `:::todo` to promote it into a tinted panel with a **progress ring** (done / total), optionally labelled:

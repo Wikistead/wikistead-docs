@@ -9,6 +9,8 @@ For sketches, whiteboards and boxes-and-arrows, Wikistead embeds [Excalidraw](ht
 ```
 ````
 
+![A stored scene, rendered on the page.](../../../assets/screenshots/drawings.png)
+
 You never write the block by hand. Insert a drawing from the editor's macro palette, then press <kbd>Ctrl</kbd>+<kbd>Enter</kbd> (or the edit control on the block) to open the full Excalidraw canvas in a modal: shapes, arrows, freehand, text, the whole tool. Close the modal and the drawing renders in place in the page.
 
 ## What is stored

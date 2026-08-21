@@ -14,6 +14,8 @@ graph LR
 ```
 ````
 
+![The fence above, rendered.](../../../assets/screenshots/diagrams.png)
+
 Mermaid renders directly in the editor — flowcharts, sequence diagrams, state machines and the rest of the Mermaid language. The block renders as a diagram; putting the caret on it (or pressing <kbd>Ctrl</kbd>+<kbd>Enter</kbd>) opens the source for editing, with the rendering updating as you type.
 
 ## PlantUML

@@ -2,7 +2,9 @@
 title: Signing in
 ---
 
-Members sign in at `/login`. Which doors the screen offers is your admin's choice ([Admin → Sign-in methods](/admin/sign-in-methods/)): **email + password**, **single sign-on** through your organisation's identity provider, or both.
+Members sign in at `/login`. Which doors the screen offers is your admin's choice ([Admin → Authentication](/admin/sign-in-methods/)): **email + password**, **single sign-on (OIDC)** through your organisation's identity provider, or both.
+
+Each door says which one it is: single sign-on buttons carry the name your admin gave the connection (or the provider's own brand for Google and Microsoft), and the password form's button says it signs you in with your email address. Nothing on the screen is just "Sign in".
 
 Guests never see this screen — a [share link](/guides/share-links/) needs no account at all.
 
@@ -22,5 +24,6 @@ Which methods are accepted — authenticator only, passkeys only, or both — is
 ## Locked out?
 
 - **Forgot password** on the sign-in screen starts an email reset (for password-door tenants).
-- Lost second factor: another admin can reset your factors from the members screen.
+- **Lost your second factor?** If you created [recovery codes](/settings/account/) beforehand, the factor step offers **"Lost your device? Use a recovery code"** — one code gets you straight back in. Using it clears every factor on your account and ends all your sessions, so you enrol a new authenticator afterwards.
+- Without codes, an admin can reset your factors from the members screen — which is the same clearing, performed by somebody else.
 - For the operator-level break-glass path (the last admin locked out), see the self-hosting guide in the source repository.

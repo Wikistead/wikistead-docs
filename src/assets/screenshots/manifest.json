@@ -1,0 +1,81 @@
+{
+  "callouts.png": {
+    "capture": "scripts/capture/capture-screens.mjs",
+    "capturedAt": "2026-08-18",
+    "source": "the running Wikistead dev app at http://dev.localhost:5183",
+    "crop": "[data-testid=callout-panel]"
+  },
+  "tables.png": {
+    "capture": "scripts/capture/capture-screens.mjs",
+    "capturedAt": "2026-08-18",
+    "source": "the running Wikistead dev app at http://dev.localhost:5183",
+    "crop": ".cm-lp-table-wrap"
+  },
+  "diagrams.png": {
+    "capture": "scripts/capture/capture-screens.mjs",
+    "capturedAt": "2026-08-18",
+    "source": "the running Wikistead dev app at http://dev.localhost:5183",
+    "crop": "[data-testid=macro-mermaid]"
+  },
+  "drawings.png": {
+    "capture": "scripts/capture/capture-screens.mjs",
+    "capturedAt": "2026-08-18",
+    "source": "the running Wikistead dev app at http://dev.localhost:5183",
+    "crop": "[data-testid=macro-excalidraw] + .cm-lp-excalidraw"
+  },
+  "layout-macros.png": {
+    "capture": "scripts/capture/capture-screens.mjs",
+    "capturedAt": "2026-08-18",
+    "source": "the running Wikistead dev app at http://dev.localhost:5183",
+    "crop": "[data-testid=macro-columns] + [data-testid=macro-tabs] + [data-testid=macro-details]"
+  },
+  "tasks.png": {
+    "capture": "scripts/capture/capture-screens.mjs",
+    "capturedAt": "2026-08-18",
+    "source": "the running Wikistead dev app at http://dev.localhost:5183",
+    "crop": ".cm-lp-todo + .cm-line"
+  },
+  "page-lists.png": {
+    "capture": "scripts/capture/capture-screens.mjs",
+    "capturedAt": "2026-08-18",
+    "source": "the running Wikistead dev app at http://dev.localhost:5183",
+    "crop": ".cm-lp-atom-sel + .wks-shot-ctx"
+  },
+  "tags.png": {
+    "capture": "scripts/capture/capture-screens.mjs",
+    "capturedAt": "2026-08-18",
+    "source": "the running Wikistead dev app at http://dev.localhost:5183",
+    "crop": ".cm-lp-macro-wrap + .cm-lp-h2"
+  },
+  "embeds.png": {
+    "capture": "scripts/capture/capture-screens.mjs",
+    "capturedAt": "2026-08-18",
+    "source": "the running Wikistead dev app at http://dev.localhost:5183",
+    "crop": ".cm-lp-atom-sel + .wks-shot-ctx"
+  },
+  "editor-live-preview.png": {
+    "capture": "scripts/capture/capture-screens.mjs",
+    "capturedAt": "2026-08-18",
+    "source": "the running Wikistead dev app at http://dev.localhost:5183",
+    "appCssWidth": 800,
+    "dpr": 2
+  },
+  "columns.png": {
+    "capture": "scripts/capture/capture-screens.mjs",
+    "capturedAt": "2026-08-18",
+    "source": "the running Wikistead dev app at http://dev.localhost:5183",
+    "crop": "[data-testid=macro-columns]"
+  },
+  "tabs.png": {
+    "capture": "scripts/capture/capture-screens.mjs",
+    "capturedAt": "2026-08-18",
+    "source": "the running Wikistead dev app at http://dev.localhost:5183",
+    "crop": "[data-testid=macro-tabs]"
+  },
+  "details.png": {
+    "capture": "scripts/capture/capture-screens.mjs",
+    "capturedAt": "2026-08-18",
+    "source": "the running Wikistead dev app at http://dev.localhost:5183",
+    "crop": "[data-testid=macro-details]"
+  }
+}

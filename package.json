@@ -5,11 +5,22 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "node scripts/pull-generated.mjs && node scripts/check-ee-badges.mjs && astro build",
+    "build": "node scripts/pull-generated.mjs && node scripts/check-ee-badges.mjs && node scripts/check-ja-prose.mjs && node scripts/check-internal-words.mjs && node scripts/check-admin-tab-names.mjs && node scripts/check-screen-vocabulary.mjs && node scripts/check-ia-spine.mjs && node scripts/check-no-build-internals.mjs && astro build && node scripts/check-internal-links.mjs && node scripts/check-translation-coverage.mjs",
     "preview": "astro preview",
     "pull:generated": "node scripts/pull-generated.mjs",
     "check:ee-badges": "node scripts/check-ee-badges.mjs",
-    "license:check": "node scripts/check-licenses.mjs"
+    "license:check": "node scripts/check-licenses.mjs",
+    "check:ja-prose": "node scripts/check-ja-prose.mjs",
+    "check:internal-words": "node scripts/check-internal-words.mjs",
+    "capture": "node scripts/capture/capture-screens.mjs",
+    "check:hero-scale": "node scripts/check-hero-scale.mjs",
+    "check:figures": "node scripts/check-figures.mjs",
+    "check:translation-coverage": "node scripts/check-translation-coverage.mjs",
+    "check:admin-tab-names": "node scripts/check-admin-tab-names.mjs",
+    "check:screen-vocabulary": "node scripts/check-screen-vocabulary.mjs",
+    "check:ia-spine": "node scripts/check-ia-spine.mjs",
+    "check:no-build-internals": "node scripts/check-no-build-internals.mjs",
+    "check:internal-links": "node scripts/check-internal-links.mjs"
   },
   "dependencies": {
     "@astrojs/starlight": "^0.41.7",
@@ -22,5 +33,8 @@
     "overrides": {
       "sharp": "-"
     }
+  },
+  "devDependencies": {
+    "playwright": "1.61.0"
   }
 }

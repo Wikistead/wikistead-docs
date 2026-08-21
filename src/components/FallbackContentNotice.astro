@@ -1,0 +1,25 @@
+---
+// #718: what an untranslated page says about itself.
+//
+// Starlight already renders a notice on fallback pages, and its stock wording is already in the
+// reader's locale. Measured on the built site, exactly three
+// pages fall back: the generated references under reference/. So the reported
+// symptom — English appearing with no explanation — was not quite what shipped.
+//
+// The sentence is still wrong for these three. They are generated from the product's own
+// code (pull-generated.mjs), their source of truth is English, and a hand-written ja mirror
+// is forbidden because the next pull overwrites it. "Not translated yet" promises a
+// translation that is not coming. This override says the true thing instead, and only for
+// the generated tree — every other page keeps Starlight's wording, which is correct for a
+// page that really is awaiting a translation.
+import ContentNotice from '@astrojs/starlight/components/ContentNotice.astro'
+
+const route = Astro.locals.starlightRoute
+const isGeneratedReference = route.id.replace(/^ja\//, '').startsWith('reference/')
+const label =
+  isGeneratedReference && route.lang === 'ja'
+    ? 'このリファレンスは製品のコードから生成しているため、英語のみです。内容は製品の実装と一致しています。'
+    : Astro.locals.t('i18n.untranslatedContent')
+---
+
+<ContentNotice icon="warning" label={label} />

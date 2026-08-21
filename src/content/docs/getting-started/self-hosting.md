@@ -2,17 +2,27 @@
 title: Self-hosting
 ---
 
-Wikistead's Community Edition is AGPL open source, and self-hosting is a first-class path — not a demo mode. The **canonical self-hosting guide ships inside the source repository** ([`docs/self-hosting.md`](https://github.com/wikistead/wikistead/blob/master/docs/self-hosting.md)), versioned with the exact code it deploys. This page orients you; the repository guide is the one to follow.
+Wikistead's Community Edition is AGPL open source, and self-hosting is a first-class path — not a demo mode. The **canonical self-hosting guide ships inside the source repository** ([`docs/self-hosting.md`](https://github.com/wikistead/wikistead/blob/main/docs/self-hosting.md)), versioned with the exact code it deploys. This page orients you; the repository guide is the one to follow.
 
 ## The short version
 
 ```bash
 git clone https://github.com/wikistead/wikistead
 cd wikistead
-docker compose up -d
+cp .env.example .env      # three secrets are mandatory — the repository guide names them
+pnpm install && pnpm dev:up
+docker compose --profile apps up -d --build
 ```
 
-One compose file brings up the whole stack. For a production deployment (Kubernetes, TLS, backups, an external IdP), follow the repository guide — it covers both the single-host evaluation setup and the production path.
+Then open **https://dev.localhost**.
+
+`docker compose up -d` on its own brings up the infrastructure only. The `apps` profile is what adds
+the product — web, server, collab and the reverse proxy that puts them on one origin. Everything is
+reached through that proxy, and the certificate is Caddy's internal one for a `.localhost` name, so
+the browser warns until you run `caddy trust`; serving a real host name (`SITE_HOST=app.example.com`)
+gets a real certificate over ACME instead.
+
+For a production deployment (Kubernetes, TLS, backups, an external IdP), follow the repository guide — it covers both the single-host evaluation setup and the production path.
 
 ## What you are running
 
@@ -36,4 +46,4 @@ Two deployment invariants worth knowing before you start (the repository guide e
 
 ## Community Edition vs Cloud
 
-Self-hosted CE resolves every feature lever as **unlimited** — there is no artificial cap to unlock. The [entitlement levers reference](/reference/generated/entitlement-levers/) is generated from the released code and shows exactly what each lever gates and what the Community column resolves to.
+A self-hosted Community deployment gets every feature **unlimited** — there is no artificial cap to unlock. [What each plan includes](/reference/plan-contents/) shows exactly what each feature controls and what the Community column comes to.

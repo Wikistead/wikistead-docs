@@ -16,4 +16,4 @@ The client does not decide this: it asks the server which surfaces are open and 
 
 ## The tabs
 
-Members & invites · Spaces · Branding · Sign-in methods · API keys · Webhooks · Audit log *(EE)* · Analytics *(EE)* · Roles · Embeds policy · Public · Moderation · Billing · Orphaned drafts — each has its own page in this section; the Public tab is documented under [Publishing](/publishing/public-spaces/).
+Members & invites · Spaces · Branding · Authentication · API keys · Webhooks · Audit log *(EE)* · Analytics *(EE)* · Roles · Embeds · Public access · Moderation · Billing · Orphaned drafts — each has its own page in this section; the Public tab is documented under [Publishing](/publishing/public-spaces/).

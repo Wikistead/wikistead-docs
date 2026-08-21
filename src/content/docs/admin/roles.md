@@ -12,4 +12,4 @@ title: Roles
 
 ## Custom roles and plans
 
-Defining and assigning custom roles is a plan lever (see [entitlement levers](/reference/generated/entitlement-levers/)); built-in roles are free on every plan. On downgrade nothing is ripped out — already-assigned grants keep working, and only *new* definitions and assignments are gated.
+Defining and assigning custom roles depends on the plan (see [what each plan includes](/reference/plan-contents/)); built-in roles are free on every plan. On downgrade nothing is ripped out — already-assigned grants keep working, and only *new* definitions and assignments are gated.

@@ -2,6 +2,9 @@
 title: "Account settings"
 ---
 
+:::note
+This page is generated from the product’s source, so it cannot drift from what the software actually does.
+:::
 <!--
   AUTO-GENERATED — DO NOT EDIT BY HAND.
   Source: apps/server/src/settings-catalog.ts.
