@@ -1,5 +1,6 @@
 ---
 title: タグ
+documented-surfaces: [macro:directive:tagged]
 ---
 
 タグはページの **frontmatter** に書きます。ドキュメントの先頭に置く標準的な YAML のブロックで、多くの静的サイトジェネレーターが読み取れる形式です。

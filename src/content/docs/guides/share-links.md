@@ -1,5 +1,6 @@
 ---
 title: Share links
+documented-surfaces: [web-route:/share/:linkId]
 ---
 
 A share link is Wikistead's front door for everyone who is not a member: open the link and you are reading — or commenting, or editing, live — **without an account**. The link *is* the onboarding.

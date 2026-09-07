@@ -1,5 +1,6 @@
 ---
 title: Search
+documented-surfaces: [doc-code-map:search-semantics]
 ---
 
 Search covers page titles and page bodies. Titles outrank bodies, so a page named for what you typed
@@ -7,10 +8,12 @@ comes first even when another page repeats the words more often.
 
 ## What you can find
 
-**Only what you can already open.** Results are filtered by your access twice: the index is queried
-with your visibility, and every hit is confirmed against the authorisation service before it reaches
-the screen. A page you cannot view is not a result you see ranked low — it is not a result at all,
-and search never becomes a way to learn that a page exists.
+**Only what you can already open.** A page you cannot view is not a result you see ranked low — it
+is not a result at all, and search never becomes a way to learn that a page exists.
+
+**Access you hold through a group counts.** A page shared with a group you belong to is findable the
+same way a page shared with you directly is — you do not have to know which of the two gave you the
+page.
 
 Guests searching through a share link are scoped to the space the link opened, for the same reason.
 

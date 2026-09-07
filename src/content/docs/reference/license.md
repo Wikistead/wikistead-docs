@@ -1,5 +1,6 @@
 ---
 title: License and editions
+documented-surfaces: none  # licensing and editions summary, not a product surface
 ---
 
 ## The short version

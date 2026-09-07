@@ -19,6 +19,9 @@ export default defineConfig({
       title: 'Wikistead Docs',
       logo: { src: './src/assets/mark.svg', alt: 'Wikistead' }, // #709: the tile-less mark (icon-solid.svg has the tile baked in)
       favicon: '/favicon.svg',
+      // #1253: the repository is the third surface and the docs header never named it. Starlight
+      // renders these in the same header slot the website back-link uses (components.SocialIcons).
+      social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/wikistead/wikistead' }],
       customCss: [
         // #709: the faces the KIT's type tokens name, delivered the same way the product delivers
         // them (@fontsource, self-hosted, OFL) at the product's own weights. The kit carries the
@@ -42,6 +45,12 @@ export default defineConfig({
         // #718: the generated references are English by design, not by
         // backlog. The override says so; every other fallback keeps Starlight's wording.
         FallbackContentNotice: './src/components/FallbackContentNotice.astro',
+        // #713-S5: a reader whose browser language isn't a site locale (en/ja) gets an honest banner
+        // instead of silent English. No page here sets frontmatter `banner:`, so replacing this slot
+        // does not lose Starlight's own per-page banner feature today.
+        Banner: './src/components/UnsupportedLanguageBanner.astro',
+        // #1253: the header slot for links out — the marketing site, then whatever `social` declares.
+        SocialIcons: './src/components/SocialIcons.astro',
       },
       sidebar: [
         { label: 'Getting started', translations: { ja: 'はじめる' }, items: [{ autogenerate: { directory: 'getting-started' } }] },

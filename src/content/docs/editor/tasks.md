@@ -1,5 +1,6 @@
 ---
 title: Tasks
+documented-surfaces: [macro:directive:todo]
 ---
 
 Task lists are standard GFM — and the checkboxes are **interactive**: any reader with edit access clicks a box and the underlying Markdown flips between `- [ ]` and `- [x]`, live for every collaborator.

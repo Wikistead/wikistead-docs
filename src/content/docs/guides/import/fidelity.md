@@ -1,5 +1,6 @@
 ---
 title: What an import cannot carry
+documented-surfaces: none  # spans the whole importer's limitations, not a single surface
 ---
 
 **An import is not complete.** Most of a page arrives intact, and some things have no equivalent

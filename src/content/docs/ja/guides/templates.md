@@ -1,5 +1,6 @@
 ---
 title: テンプレート
+documented-surfaces: [web-route:/templates]
 ---
 
 テンプレートは、一度書いておいて何度も使いまわすページです。議事録、設計の記録（ADR）、運用手順、週次の計画などに向いています。

@@ -1,8 +1,11 @@
 ---
 title: Branding
+documented-surfaces: [admin-surface:branding]
+screens:
+  admin-surface:branding: [logoUpload, logoRemove]
 ---
 
-**Admin → Branding** (admins) sets the workspace's look: a **logo** for the header and sign-in card, and an **accent colour**. Spaces can carry their own accent on top (in each space's settings).
+**Admin → Branding** (admins) sets the workspace's look: a **logo** for the header and sign-in card, and an **accent colour**. Spaces can carry their own accent on top (in each space's settings). Click **Upload logo** to set one, or **Remove** to take it away.
 
 Two boundaries worth knowing:
 

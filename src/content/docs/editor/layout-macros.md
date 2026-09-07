@@ -1,5 +1,6 @@
 ---
 title: Layout macros
+documented-surfaces: [macro:directive:columns, macro:directive:tabs, macro:directive:details]
 ---
 
 Three container directives arrange Markdown instead of adding to it: **columns**, **tabs** and **details**. Each body is ordinary Markdown — anything the editor renders elsewhere renders inside them.

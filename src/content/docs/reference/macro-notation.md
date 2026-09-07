@@ -1,5 +1,6 @@
 ---
 title: Macro notation
+documented-surfaces: none  # aggregates macros already ledgered individually on editor/*.md pages
 ---
 
 The canonical syntax of every built-in macro, on one page. Everything here is standard-Markdown-shaped: data blocks are **code fences with a language tag**, Markdown-bodied blocks are **`:::` directives** — no private syntax.
@@ -65,4 +66,4 @@ const x = 1
 
 ## For AI assistants
 
-A machine-readable version of this reference is served over the workspace's [MCP connector](https://modelcontextprotocol.io/) (`get_syntax_reference`), generated from the same registry the editor runs — an assistant writing into your workspace reads the same notation contract as this page.
+A machine-readable version of this notation — this page plus [Markdown notation](/reference/markdown-notation/) — is served over the workspace's [MCP connector](https://modelcontextprotocol.io/) (`get_syntax_reference`), generated from the same registry the editor runs — an assistant writing into your workspace reads the same notation contract as these pages.

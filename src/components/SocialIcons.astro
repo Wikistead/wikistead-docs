@@ -1,0 +1,34 @@
+---
+// #1253: a way back to the marketing site from the docs. Measured before writing this: the landing
+// page, the docs and the repository were three surfaces with no link between them, and comparable
+// projects all carry one — Docmost names the marketing site outright in the docs header, Plausible
+// makes the docs logo the way back.
+//
+// The logo is left alone (inside a docs site, readers expect it to mean "docs home", which is what
+// Docmost does too); the way back is an explicit item, rendered in the slot Starlight reserves for
+// header links. `<Default />` keeps whatever the `social` config declares, so adding an icon there
+// later needs no change here.
+import Default from '@astrojs/starlight/components/SocialIcons.astro';
+
+const locale = Astro.locals.starlightRoute.locale;
+// The landing page ships every docs locale and more; a ja reader belongs on the ja landing page.
+const href = locale === 'ja' ? 'https://wikistead.com/ja/' : 'https://wikistead.com/';
+---
+
+<a class="wks-website" href={href}>{Astro.locals.t('siteHeader.website')}</a>
+<Default><slot /></Default>
+
+<style>
+  @layer starlight.core {
+    .wks-website {
+      color: var(--sl-color-text);
+      text-decoration: none;
+      font-size: var(--sl-text-sm);
+      white-space: nowrap;
+      align-self: center;
+    }
+    .wks-website:hover {
+      color: var(--sl-color-white);
+    }
+  }
+</style>

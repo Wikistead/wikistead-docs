@@ -1,5 +1,6 @@
 ---
 title: First steps
+documented-surfaces: none  # onboarding walkthrough across page/space/share/invite, not a single surface
 ---
 
 Create your first page, organise it into a space, invite a teammate, and hand an anonymous guest a share link — the four moves that make Wikistead yours. Five minutes, start to finish.
@@ -8,7 +9,7 @@ Create your first page, organise it into a space, invite a teammate, and hand an
 
 Open your workspace and press **New page** in the sidebar. The page opens straight into the editor.
 
-There is only one editing surface: you type Markdown, and it renders as you type — headings, lists, tables, callouts and diagrams appear in place while the document underneath stays plain Markdown. There is no separate preview pane and no mode switch between writing and reading; the line your caret is on shows its Markdown, everything else shows the result.
+There is only one editing surface: you type Markdown, and it renders as you type — headings, lists, tables, callouts and diagrams appear in place while the document underneath stays plain Markdown. There is no separate preview pane and no mode switch between writing and reading; the line your caret is on shows its Markdown, everything else shows the result. See [Markdown notation](/reference/markdown-notation/) for a cheat sheet of what's recognized.
 
 Try it:
 
@@ -49,6 +50,7 @@ The distinction is deliberate: **members** are your team; **share links** are fo
 
 ## Where next
 
+- [Markdown notation](/reference/markdown-notation/) — a cheat sheet for the notation this page just used.
 - [Pages](/guides/pages/) — links, backlinks, revisions and the page lifecycle.
 - [Spaces](/guides/spaces/) — organising and switching.
 - [The editor](/editor/callouts/) — everything the one surface can render.

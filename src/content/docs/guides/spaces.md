@@ -1,5 +1,6 @@
 ---
 title: Spaces
+documented-surfaces: [web-route:/, web-route:/spaces/:spaceId]
 ---
 
 A space is a page tree with a front door: one team, project or topic, its own home page, its own access.

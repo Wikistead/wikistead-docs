@@ -1,5 +1,6 @@
 ---
 title: ライセンスとエディション
+documented-surfaces: none  # licensing and editions summary, not a product surface
 ---
 
 ## 要点

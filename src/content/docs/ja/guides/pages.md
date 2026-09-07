@@ -1,5 +1,6 @@
 ---
 title: ページ
+documented-surfaces: [web-route:/p/:pageId, doc-code-map:export-rules, doc-code-map:print-output, doc-code-map:dialogs]
 ---
 
 ページは、スペースのツリーに属する 1 つの Markdown ドキュメントです。下書きを書いて公開し、他のページとリンクでつなぎ、公開するたびに版を残せます。エクスポートもページ単位でできます。

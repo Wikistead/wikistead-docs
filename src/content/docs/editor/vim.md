@@ -1,31 +1,37 @@
 ---
 title: Vim mode
+documented-surfaces: none  # no ledger surface of its own; its settings live on settings/account.md
 ---
 
-Wikistead ships a real Vim mode — modal editing on top of CodeMirror's Vim engine, not a veneer of keybindings. Toggle it with the **Vim** switch in the editor's bottom bar; the setting is yours (per account), and flipping it mid-session never disconnects you from the live document — collaboration and presence keep running through the toggle.
+Turn it on with **Vim** in the editor's toolbar, or press <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>V</kbd> — rebindable in Settings → Account → Editor, and only live while you are actually editing (it does nothing while you are reading).
 
-## What works
+**Vim is unavailable on touch devices and in WYSIWYG mode.** The button stays visible, disabled, with a tooltip naming which of the two applies. Switch to Live or Source view, or use a keyboard and mouse, and it comes back on its own — your Vim preference is untouched either way.
 
-Normal / insert / visual modes, motions, operators, counts, registers, search — the Vim vocabulary you expect from the underlying engine, applied to a document that is rendering itself as you type.
+## Where it starts
 
-## Vim among the macros
+Settings → Account → Editor → **Keymap**:
 
-The interesting part is how Vim meets the rendered blocks. A table, diagram, drawing or layout container is an **atom** to Vim:
+- **Follow this device's last choice**
+- **Always start in Vim**
+- **Always start off**
 
-- `j` / `k` cross a rendered block as **one** motion stop — a fifty-line diagram is one step, not fifty.
-- The caret never lands *inside* a rendered widget uninvited; a block is selected as a whole.
-- `dd` on a block deletes the whole block — fence, body and all.
-- To edit inside one, press <kbd>Ctrl</kbd>+<kbd>Enter</kbd> — the deliberate "enter the block" action.
+## Saving and quitting
 
-This keeps the mental model honest: what looks like one thing on screen behaves as one thing under `d`, `y` and movement.
+`:w` publishes and keeps you in the editor. `:wq` publishes and returns you to the page. `:q` leaves the editor without publishing.
 
 ## The system clipboard
 
-Out of the box Vim mode is register-pure: what you copy outside the editor and what you yank inside it stay separate, and `"+y` / `"+p` are the explicit bridge — exactly what a Vim hand expects.
+Settings → Account → Editor → **Vim system clipboard**:
 
-If you would rather have a plain `p` / `P` paste what you copied elsewhere, switch **Settings → Account → Editor → Vim system clipboard** to **Paste**. In that mode a bare URL auto-links on paste, the same as <kbd>Ctrl</kbd>+<kbd>V</kbd>, while counts (`3p`), named registers (`"ap`) and everything else keep Vim's own behaviour. Yank and delete never write the system clipboard in either mode.
+- **Off** (default) — yanks and deletes stay in Vim's own registers; `"+y` / `"+p` are the bridge to the system clipboard.
+- **Paste** — a bare `p` / `P` pastes what you copied outside the editor instead (a bare URL auto-links, the same as <kbd>Ctrl</kbd>+<kbd>V</kbd>); counts, named registers and everything else still work the way Vim always does.
+
+## Other settings, same tab
+
+- **Monospace while vim is on** — on by default, so the font itself tells you which mode you're in.
+- You can hide the **Vim** button for yourself; the shortcut keeps working either way.
 
 ## Notes
 
-- Vim mode is per-user: your teammates see the same page, each with their own editing style.
-- Inside macro editing surfaces (a table cell, a layout slot), <kbd>Esc</kbd> first leaves Vim's insert mode, then exits the surface — the key does what a Vim hand expects at each level.
+- Inside a table cell or another macro's editing surface, <kbd>Esc</kbd> leaves Vim's insert mode first and the surface itself second.
+- A rendered table, diagram or drawing moves and deletes as a single block under Vim's motions — see [When something breaks](/guides/troubleshooting/) if that surprises you mid-edit.

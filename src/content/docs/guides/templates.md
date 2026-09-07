@@ -1,5 +1,6 @@
 ---
 title: Templates
+documented-surfaces: [web-route:/templates]
 ---
 
 A template is a page you write once and stamp many times — meeting notes, ADRs, runbooks, weekly plans.

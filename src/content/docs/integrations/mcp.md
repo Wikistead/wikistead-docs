@@ -1,5 +1,6 @@
 ---
 title: MCP connector
+documented-surfaces: [capability:mcp:list_spaces, capability:mcp:list_pages, capability:mcp:get_page, capability:mcp:get_backlinks, capability:mcp:search, capability:mcp:get_syntax_reference, capability:mcp:create_page, capability:mcp:publish_page, capability:mcp:edit_body, capability:mcp:create_comment]
 ---
 
 Wikistead speaks **MCP** (Model Context Protocol), so an assistant that supports it — Claude, an editor extension, your own agent — can read your workspace and draft into it *as you*, without anyone pasting page contents into a chat window.

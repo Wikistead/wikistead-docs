@@ -1,5 +1,6 @@
 ---
 title: Tags
+documented-surfaces: [macro:directive:tagged]
 ---
 
 Tags live in the page's **frontmatter** — the standard YAML block at the very top of the document, the same convention every static-site generator reads:

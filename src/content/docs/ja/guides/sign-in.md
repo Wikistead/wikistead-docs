@@ -1,8 +1,9 @@
 ---
 title: サインイン
+documented-surfaces: [web-route:/reset-password, web-route:/join, web-route:/join/workspace, web-route:/login, web-route:/login/recovery]
 ---
 
-メンバーは `/login` からサインインします。この画面にどのサインイン方法を並べるかは、管理者が決めます（[管理 → 認証](/ja/admin/sign-in-methods/)）。用意できるのは**メールとパスワード**、組織の IdP を使った**シングルサインオン（OIDC）**、またはその両方です。
+メンバーは `/login` からサインインします。この画面にどのサインイン方法を並べるかは、管理者が決めます（[管理 → 認証](/ja/admin/sign-in-methods/)）。用意できるのは**メールとパスワード**、組織の ID プロバイダーを使った**シングルサインオン（OIDC）**、またはその両方です。
 
 どのボタンも、自分がどの方法なのかを名乗ります。シングルサインオンのボタンには、管理者がその接続に付けた名前が出ます（Google と Microsoft は、それぞれのブランド表示になります）。パスワードのボタンは「メールアドレスでサインイン」と言います。ただ「サインイン」とだけ書かれたボタンはありません。
 

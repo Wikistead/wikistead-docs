@@ -1,5 +1,6 @@
 ---
 title: Notifications & watches
+documented-surfaces: [web-route:/watches]
 ---
 
 You do not follow everything — you **watch** what matters and Wikistead tells you when it moves.

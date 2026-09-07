@@ -1,5 +1,6 @@
 ---
 title: スペース
+documented-surfaces: [web-route:/, web-route:/spaces/:spaceId]
 ---
 
 スペースは、ホームページを起点とするページのツリーです。チームやプロジェクト、トピックごとに作り、それぞれ専用のホームページとアクセス権を設定できます。

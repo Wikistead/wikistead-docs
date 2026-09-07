@@ -1,5 +1,6 @@
 ---
 title: ドローイング
+documented-surfaces: [macro:fence:excalidraw]
 ---
 
 手描きのスケッチ、ホワイトボード風の図、四角と矢印だけの簡単な構成図を描きたいときは、[Excalidraw](https://excalidraw.com/) のキャンバスをフェンスブロックとして埋め込めます。

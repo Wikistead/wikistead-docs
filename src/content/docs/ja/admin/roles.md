@@ -1,5 +1,7 @@
 ---
 title: ロール
+screens:
+  admin-surface:roles: ["builtIn:none:product label is 組込 which does not read naturally as prose (組み込み) — a product-copy question out of this ticket's scope", "create:none:the page describes the model not the create/rename/delete flow", "rename:none:the page describes the model not the create/rename/delete flow", "delete:none:the page describes the model not the create/rename/delete flow"]
 ---
 
 **管理 → ロール**には、ワークスペースで使えるロールがすべて並びます。組み込みのロールもカスタムのロールも同じ一覧です。管理者と、ロール管理の権限を持つ人が開けます。

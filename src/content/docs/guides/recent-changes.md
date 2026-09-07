@@ -1,5 +1,6 @@
 ---
 title: Recent changes
+documented-surfaces: [web-route:/changes]
 ---
 
 **Changes** in the sidebar is the workspace's pulse: a reverse-chronological feed of page activity across everything *you* are allowed to see.

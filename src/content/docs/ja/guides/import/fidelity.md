@@ -1,5 +1,6 @@
 ---
 title: 取り込めないもの
+documented-surfaces: none  # spans the whole importer's limitations, not a single surface
 ---
 
 **取り込みは完全ではありません。** ページの大部分はそのまま届きますが、こちらに同じ機能が無いものは

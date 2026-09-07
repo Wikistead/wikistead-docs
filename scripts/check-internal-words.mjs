@@ -29,8 +29,13 @@ import { fileURLToPath } from 'node:url'
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const DOCS = join(root, 'src/content/docs')
 
-/** The stamp `pull-generated` writes onto every page it brings over. */
-const GENERATED_MARK = 'This page is generated from the product'
+/**
+ * The stamp `pull-generated` writes onto every page it brings over. Exported for #759 / ADR-244
+ * §3.5's declaration checker, which needs the identical page-level generated-page exemption this
+ * check already has — importing the constant means the two cannot name the stamp differently and
+ * drift apart the way the two frontmatter parsers almost did (ADR-244 §3.5, condition (a)).
+ */
+export const GENERATED_MARK = 'This page is generated from the product'
 
 /**
  * Words that belong to the implementation, with what a reader is offered instead.

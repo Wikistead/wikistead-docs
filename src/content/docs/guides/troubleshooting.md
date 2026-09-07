@@ -1,5 +1,6 @@
 ---
 title: When something breaks
+documented-surfaces: none  # symptom index spanning many surfaces, not one
 ---
 
 Start here when the product is doing something you did not ask for. Each entry names the thing you
@@ -29,6 +30,11 @@ published version. Publish it, or open it in the editor to see the draft. The
 **Search does not find a page you can see.** Indexing is a moment behind the edit that caused it.
 When a page stays missing, the index and the permissions have diverged — the search entry is checked
 against live permissions before it is shown, so the safe direction is the one you are seeing.
+
+**`dd`, or a jump like `j` / `k`, deletes or skips a whole table, diagram or drawing in one
+step, not one line.** That is deliberate: a rendered block behaves as the one thing it looks like
+on screen. Press <kbd>Ctrl</kbd>+<kbd>Enter</kbd> to edit inside it directly. See
+[Vim mode](/editor/vim/) for the rest of Vim's editing behaviour.
 
 ## Operations
 

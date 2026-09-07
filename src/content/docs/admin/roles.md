@@ -1,8 +1,10 @@
 ---
 title: Roles
+screens:
+  admin-surface:roles: [builtIn, "create:none:the page describes the model not the create/rename/delete flow", "rename:none:the page describes the model not the create/rename/delete flow", "delete:none:the page describes the model not the create/rename/delete flow"]
 ---
 
-**Admin → Roles** shows every role the workspace knows — built-in and custom under **one framework** — and opens to admins and holders of the carved-out *manage roles* power.
+**Admin → Roles** shows every role the workspace knows — **built-in** and custom under **one framework** — and opens to admins and holders of the carved-out *manage roles* power.
 
 ## The model
 

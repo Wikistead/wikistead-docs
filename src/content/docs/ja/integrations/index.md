@@ -1,5 +1,6 @@
 ---
 title: 他のツールと組み合わせる
+documented-surfaces: none  # orients across three surfaces (API/webhooks/MCP), each already ledgered on its own page
 ---
 
 Wikistead は、いま使っているツールを置き換えるのではなく、それらと組み合わせて使えるように作られています。連携の方法は 3 つあり、それぞれ役割が分かれています。

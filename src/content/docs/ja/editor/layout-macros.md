@@ -1,5 +1,6 @@
 ---
 title: レイアウトマクロ
+documented-surfaces: [macro:directive:columns, macro:directive:tabs, macro:directive:details]
 ---
 
 Markdown に書けることを増やすのではなく、書いたものを並べるためのディレクティブが 3 つあります。**カラム**（`:::columns`・横並び）、**タブ**（`:::tabs`）、**折りたたみ**（`:::details`）です。中身はふつうの Markdown なので、ページの他の場所で描画されるものは、この中でも同じように描画されます。

@@ -1,5 +1,6 @@
 ---
 title: Drawings
+documented-surfaces: [macro:fence:excalidraw]
 ---
 
 For sketches, whiteboards and boxes-and-arrows, Wikistead embeds [Excalidraw](https://excalidraw.com/) — the hand-drawn-style canvas — as a fenced block:

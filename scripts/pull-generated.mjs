@@ -44,31 +44,41 @@ function toPage(src, dest) {
 // #706: the brand kit rides the same pull — tokens to the stylesheet layer, the mark to public/
 // and the logo slot, the faces to public/brand/fonts (self-hosted, licences alongside). The docs
 // therefore wear the RELEASED product's look; a hand copy would rot the day a token changes.
+//
+// #1255: brand pieces are `required` — modeled on lp's own pull-source.mjs (#696 §5), which has
+// carried the same flag on the same pieces since #706. A missing REQUIRED piece is refused loudly
+// (`process.exit(1)`) rather than silently falling back to whatever was last committed, which is how
+// #1218's 3.2MB of retired UDEV Gothic files sat frozen here for weeks after the product dropped them
+// — nothing ever went red. Every tag this pulls from today postdates #706 (the brand kit's own
+// introduction), so the historical "pre-#706 source has no brand dir" case this leniency was written
+// for no longer occurs in practice; `admin-tabs.json`/`screen-vocabulary.json` are NOT brand pieces
+// (a CE-only source tree can legitimately lack them) and stay lenient.
 const BRAND = [
-  { from: 'brand/tokens.css', to: 'src/styles/brand-tokens.css' },
-  { from: 'brand/favicon.svg', to: 'public/favicon.svg' },
-  { from: 'brand/icon-solid.svg', to: 'src/assets/icon-solid.svg' },
+  { from: 'brand/tokens.css', to: 'src/styles/brand-tokens.css', required: true },
+  { from: 'brand/favicon.svg', to: 'public/favicon.svg', required: true },
+  { from: 'brand/icon-solid.svg', to: 'src/assets/icon-solid.svg', required: true },
   // #709: the HEADER mark is the tile-less line mark, the same asset the
   // product's own header uses. `icon-solid.svg` carries a filled `<rect>` tile inside the asset, so
   // no amount of CSS removes the box the user asked about — the fix is choosing the other mark. It
   // rides the kit rather than being hand-copied, so it cannot drift from the released product.
-  { from: 'brand/favicon.svg', to: 'src/assets/mark.svg' },
-  { from: 'brand/fonts/udevgothic-Regular.woff2', to: 'public/brand/fonts/udevgothic-Regular.woff2' },
-  { from: 'brand/fonts/udevgothic-Bold.woff2', to: 'public/brand/fonts/udevgothic-Bold.woff2' },
-  { from: 'brand/fonts/wikistead-mono-Regular.woff2', to: 'public/brand/fonts/wikistead-mono-Regular.woff2' },
-  { from: 'brand/fonts/wikistead-mono-Bold.woff2', to: 'public/brand/fonts/wikistead-mono-Bold.woff2' },
-  { from: 'brand/fonts/LICENSE-UDEVGothic.txt', to: 'public/brand/fonts/LICENSE-UDEVGothic.txt' },
-  { from: 'brand/fonts/LICENSE-SourceCodePro.txt', to: 'public/brand/fonts/LICENSE-SourceCodePro.txt' },
+  { from: 'brand/favicon.svg', to: 'src/assets/mark.svg', required: true },
+  // #1223: UDEV Gothic (2 woff2 + its LICENSE) is gone — #1181 replaced it with Sarasa Fixed J as the
+  // product's --font-body-vim face, and no docs-site stylesheet ever selected the "UDEV Gothic" family
+  // (brand.css's @font-face for it was dead CSS pointing at these dead files). Not replaced with a
+  // Sarasa entry: nothing here needs it — --wks-font-mono binds to "Wikistead Mono" alone.
+  { from: 'brand/fonts/wikistead-mono-Regular.woff2', to: 'public/brand/fonts/wikistead-mono-Regular.woff2', required: true },
+  { from: 'brand/fonts/wikistead-mono-Bold.woff2', to: 'public/brand/fonts/wikistead-mono-Bold.woff2', required: true },
+  { from: 'brand/fonts/LICENSE-SourceCodePro.txt', to: 'public/brand/fonts/LICENSE-SourceCodePro.txt', required: true },
   // #731: the admin console's tab labels, as the PRODUCT spells them. Not a page — a table the
   // build checks the admin pages against (scripts/check-admin-tab-names.mjs), so the documentation
   // can be wrong about a name and be told so, instead of the two vocabularies drifting in separate
   // repositories the way they did.
-  { from: 'admin-tabs.json', to: 'src/content/generated/admin-tabs.json' },
+  { from: 'admin-tabs.json', to: 'src/content/generated/admin-tabs.json', required: false },
   // #741: each screen's ACTIONS and STATES, as the product spells them. #731's table covers the tab
   // names and nothing below them — the button a reader must press, the badge that says what state a
   // row is in. Same reason it is pulled rather than written here: the words move when the product
   // renames them, and a copy would go red for being right.
-  { from: 'screen-vocabulary.json', to: 'src/content/generated/screen-vocabulary.json' },
+  { from: 'screen-vocabulary.json', to: 'src/content/generated/screen-vocabulary.json', required: false },
 ]
 
 function importFrom(dir, label) {
@@ -79,8 +89,11 @@ function importFrom(dir, label) {
   for (const b of BRAND) {
     const src = join(dir, b.from)
     if (!existsSync(src)) {
-      // Pre-#706 sources have no brand dir; the committed copies stay (loud, not fatal).
-      console.log(`pull-generated: brand piece missing at source (${b.from}) — keeping the committed copy`)
+      if (b.required) {
+        console.error(`pull-generated: ${b.from} missing at ${label} — the brand kit is incomplete. Refusing a partial pull.`)
+        process.exit(1)
+      }
+      console.log(`pull-generated: ${b.from} absent at source (a CE-only tree may legitimately lack it) — keeping the committed copy`)
       continue
     }
     mkdirSync(join(root, b.to, '..'), { recursive: true })

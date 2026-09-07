@@ -1,5 +1,6 @@
 ---
 title: 困ったときの窓口
+documented-surfaces: none  # where to ask for help, not a product surface
 ---
 
 ## どこに聞くか

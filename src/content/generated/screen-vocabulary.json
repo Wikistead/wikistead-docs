@@ -1,5 +1,61 @@
 {
   "surfaces": {
+    "admin-surface:analytics": {
+      "unique": {
+        "en": "Unique viewers",
+        "ja": "ユニーク閲覧者"
+      },
+      "viewerClass": {
+        "en": "Viewer",
+        "ja": "閲覧者"
+      }
+    },
+    "admin-surface:api": {
+      "create": {
+        "en": "Create",
+        "ja": "作成"
+      },
+      "revoke": {
+        "en": "Revoke",
+        "ja": "取り消し"
+      }
+    },
+    "admin-surface:audit": {
+      "export": {
+        "en": "Export JSONL",
+        "ja": "JSONL エクスポート"
+      },
+      "verify": {
+        "en": "Verify chain",
+        "ja": "チェーンを検証"
+      }
+    },
+    "admin-surface:auth": {
+      "secondFactorRequired": {
+        "en": "Require two-factor authentication",
+        "ja": "2 要素認証を必須にする"
+      }
+    },
+    "admin-surface:billing": {
+      "manage": {
+        "en": "Manage billing",
+        "ja": "課金を管理"
+      },
+      "upgradePro": {
+        "en": "Upgrade to Pro",
+        "ja": "Pro にアップグレード"
+      }
+    },
+    "admin-surface:branding": {
+      "logoRemove": {
+        "en": "Remove",
+        "ja": "削除"
+      },
+      "logoUpload": {
+        "en": "Upload logo",
+        "ja": "ロゴをアップロード"
+      }
+    },
     "admin-surface:domains": {
       "pending": {
         "en": "Pending",
@@ -16,6 +72,118 @@
       "verify": {
         "en": "Verify",
         "ja": "検証する"
+      }
+    },
+    "admin-surface:embeds": {
+      "add": {
+        "en": "Add",
+        "ja": "追加"
+      },
+      "host": {
+        "en": "Host",
+        "ja": "ホスト"
+      },
+      "remove": {
+        "en": "Remove",
+        "ja": "削除"
+      }
+    },
+    "admin-surface:members": {
+      "reactivate": {
+        "en": "Bring back",
+        "ja": "再開"
+      },
+      "resetFactors": {
+        "en": "Reset two-factor authentication",
+        "ja": "2 要素認証をリセット"
+      },
+      "sendInvite": {
+        "en": "Send invite",
+        "ja": "招待を送信"
+      },
+      "suspend": {
+        "en": "Suspend",
+        "ja": "停止"
+      }
+    },
+    "admin-surface:moderation": {
+      "shrinkLabel": {
+        "en": "Mass-delete guard",
+        "ja": "大量削除ガード"
+      },
+      "wordsLabel": {
+        "en": "Banned words",
+        "ja": "禁止語"
+      }
+    },
+    "admin-surface:orphans": {
+      "claim": {
+        "en": "Claim",
+        "ja": "引き取る"
+      },
+      "reassign": {
+        "en": "Reassign",
+        "ja": "再割り当て"
+      }
+    },
+    "admin-surface:public": {
+      "toggleTitle": {
+        "en": "Allow public pages in this workspace",
+        "ja": "このワークスペースで公開ページを許可する"
+      }
+    },
+    "admin-surface:roles": {
+      "builtIn": {
+        "en": "built-in",
+        "ja": "組込"
+      },
+      "create": {
+        "en": "New role",
+        "ja": "新しいロール"
+      },
+      "delete": {
+        "en": "Delete role",
+        "ja": "ロールを削除"
+      },
+      "rename": {
+        "en": "Rename role",
+        "ja": "名前を変更"
+      }
+    },
+    "admin-surface:scim": {
+      "create": {
+        "en": "Create token",
+        "ja": "トークンを作成"
+      },
+      "revoke": {
+        "en": "Revoke",
+        "ja": "取り消す"
+      }
+    },
+    "admin-surface:spaces": {
+      "manage": {
+        "en": "Manage",
+        "ja": "管理"
+      }
+    },
+    "admin-surface:usage": {
+      "usageTitle": {
+        "en": "This period",
+        "ja": "今期の使用量"
+      }
+    },
+    "admin-surface:webhooks": {
+      "create": {
+        "en": "Add",
+        "ja": "追加"
+      },
+      "delete": {
+        "en": "Delete webhook",
+        "ja": "Webhook を削除"
+      },
+      "disabled": {
+        "en": "Disabled",
+        "ja": "無効"
       }
     }
   }

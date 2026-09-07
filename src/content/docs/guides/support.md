@@ -1,5 +1,6 @@
 ---
 title: How to get help
+documented-surfaces: none  # where to ask for help, not a product surface
 ---
 
 ## Where to ask

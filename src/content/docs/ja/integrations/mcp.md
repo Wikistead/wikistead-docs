@@ -1,5 +1,6 @@
 ---
 title: MCP 接続
+documented-surfaces: [capability:mcp:list_spaces, capability:mcp:list_pages, capability:mcp:get_page, capability:mcp:get_backlinks, capability:mcp:search, capability:mcp:get_syntax_reference, capability:mcp:create_page, capability:mcp:publish_page, capability:mcp:edit_body, capability:mcp:create_comment]
 ---
 
 Wikistead は **MCP**（Model Context Protocol）に対応しています。MCP に対応したアシスタント（Claude、エディタの拡張、自作のエージェントなど）から、ワークスペースの内容を読み取らせたり、下書きを書かせたりできます。ページの中身をチャット欄に貼り付ける必要はありません。このとき、アシスタントは**あなた本人の権限で**動きます。

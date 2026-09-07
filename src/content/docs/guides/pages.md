@@ -1,5 +1,6 @@
 ---
 title: Pages
+documented-surfaces: [web-route:/p/:pageId, doc-code-map:export-rules, doc-code-map:print-output, doc-code-map:dialogs]
 ---
 
 A page is one Markdown document in a space's tree — drafted, published, linked, revised and exported as a unit.

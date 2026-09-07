@@ -1,6 +1,9 @@
 ---
 title: コールアウト
+documented-surfaces: [macro:directive:note, macro:directive:info, macro:directive:tip, macro:directive:warning, macro:directive:danger]
 ---
+
+この章はエディタのマクロ（`:::` ディレクティブとコードフェンス）を扱います。見出しやリンク、ハイライト、脚注、数式など、素の Markdown の記法は[Markdown 記法](/ja/reference/markdown-notation/)を参照してください。
 
 コールアウトは、読み飛ばしてほしくない文章を、アイコンの付いた色付きのパネルで囲む機能です。種類は 5 つあり、種類ごとにディレクティブが分かれています。
 

@@ -1,5 +1,6 @@
 ---
 title: セルフホスト
+documented-surfaces: none  # orients to the canonical self-hosting guide in the source repo, not a product surface
 ---
 
 Wikistead の Community Edition は AGPL のオープンソースで、セルフホストはデモ用の選択肢ではなく、正式な使い方の 1 つです。**手順の元になる文書は、ソースリポジトリに入っている [`docs/self-hosting.md`](https://github.com/wikistead/wikistead/blob/main/docs/self-hosting.md)** です（デプロイするコードと同じようにバージョン管理されています）。このページは概要です。実際に作業するときはリポジトリ側のガイドに従ってください。

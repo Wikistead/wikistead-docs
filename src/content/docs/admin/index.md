@@ -1,5 +1,6 @@
 ---
 title: Admin console
+documented-surfaces: [web-route:/admin/*, doc-code-map:admin-console]
 ---
 
 The admin console (**Admin** in the sidebar, `/admin`) is where the workspace itself is run: members, roles, sign-in policy, keys, webhooks, branding, billing.
@@ -16,4 +17,4 @@ The client does not decide this: it asks the server which surfaces are open and 
 
 ## The tabs
 
-Members & invites · Spaces · Branding · Authentication · API keys · Webhooks · Audit log *(EE)* · Analytics *(EE)* · Roles · Embeds · Public access · Moderation · Billing · Orphaned drafts — each has its own page in this section; the Public tab is documented under [Publishing](/publishing/public-spaces/).
+Members & invites · Spaces · Custom domains · Branding · Authentication · SCIM provisioning *(EE)* · API keys · Webhooks · Audit log *(EE)* · Analytics *(EE)* · Roles · Embeds · Public access · Moderation · Billing · Orphaned drafts — each has its own page in this section; the Public tab is documented under [Publishing](/publishing/public-spaces/).

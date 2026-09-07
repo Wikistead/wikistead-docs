@@ -1,5 +1,6 @@
 ---
 title: Account settings
+documented-surfaces: [web-route:/settings/account/*, capability:factor:totp, capability:factor:passkey, capability:factor:recovery-code, doc-code-map:account-settings]
 ---
 
 Your personal settings live at **Settings → Account** — everything here is yours alone, and none of it needs an admin. Seven tabs:
@@ -11,7 +12,7 @@ Your personal settings live at **Settings → Account** — everything here is y
 | **Theme** | Light / dark / system. |
 | **Notifications** | How your [watches](/guides/notifications/) reach you. |
 | **API keys** | Personal API keys you hold — issue them here where the workspace allows members to; otherwise the tab lists what you have. |
-| **Security** | Your second factors: enrol an authenticator app (TOTP), register passkeys, and remove either. Also your **recovery codes** — see below. Which methods the workspace accepts is [tenant policy](/admin/sign-in-methods/). |
+| **Security** | Your second factors: enrol an authenticator app (TOTP), register passkeys, and remove either. Also your **recovery codes** and **linking sign-in methods** — see below. Which methods the workspace accepts is [tenant policy](/admin/sign-in-methods/). |
 | **Data** | **Export everything you can see** as one Markdown ZIP. |
 
 ## Recovery codes
@@ -25,6 +26,16 @@ If the phone or key holding your second factor is gone, **recovery codes get you
 - **Creating a new set retires the one you have.** There is never more than one live set, so a printout you replaced is worthless.
 - **Everyone who can hold a second factor can hold codes.** Not admins only, and not dependent on how many people are in the workspace: losing a device has nothing to do with your role or your colleagues, who cannot find your phone either.
 - **Self-hosting:** on by default. An operator who wants admin-reset-only can set `SECOND_FACTOR_RECOVERY=off`, and the tab says so rather than offering a button that would be refused.
+
+## Linking a sign-in method
+
+If you signed in with a password, you can add one of the workspace's OIDC sign-in methods to your same account — or the other way round — instead of ending up with two separate accounts.
+
+- **Add it from here, not from a fresh sign-in.** Signing in through a provider tied to an address you already hold never merges accounts on its own; it is refused, and told to come here instead. Linking only ever happens from inside the account you already have.
+- **Confirm it is you first** — the same three proofs as recovery codes: an authenticator code, a passkey, or your password. Then you are sent to the provider, and back.
+- **It signs in as the SAME member.** Your pages, history and permissions do not change — you have simply gained a second way to reach the same account.
+- **An identity already linked to someone else is refused.** Two people cannot claim the same upstream sign-in.
+- **Linking clears any display-name override you had set**, and locks the Profile tab's name field to what the provider sends from then on — the same rule that already applies to anyone who signs in through a provider (see Profile above).
 
 ## Two things worth knowing
 

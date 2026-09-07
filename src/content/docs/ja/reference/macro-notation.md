@@ -1,5 +1,6 @@
 ---
 title: マクロ記法
+documented-surfaces: none  # aggregates macros already ledgered individually on editor/*.md pages
 ---
 
 組み込みマクロの書き方を 1 ページにまとめました。ここにあるものはすべて標準の Markdown の形をしています。データを持つブロックは**言語タグを付けたコードフェンス**、中身が Markdown のブロックは **`:::` ディレクティブ**です。独自の記法はありません。
@@ -65,4 +66,4 @@ const x = 1
 
 ## AI アシスタント向け
 
-このリファレンスの機械可読版は、ワークスペースの [MCP コネクタ](https://modelcontextprotocol.io/)（`get_syntax_reference`）で提供されます。エディタが使っているのと同じ定義から生成しているため、ワークスペースに書き込む AI アシスタントも、このページとまったく同じ書き方を参照します。
+この記法(このページに加えて [Markdown 記法](/ja/reference/markdown-notation/))の機械可読版は、ワークスペースの [MCP コネクタ](https://modelcontextprotocol.io/)（`get_syntax_reference`）で提供されます。エディタが使っているのと同じ定義から生成しているため、ワークスペースに書き込む AI アシスタントも、これらのページとまったく同じ書き方を参照します。

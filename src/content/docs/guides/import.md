@@ -1,8 +1,9 @@
 ---
 title: Importing from another tool
+documented-surfaces: [capability:import:obsidian, capability:import:notion, capability:import:confluence, capability:import:docmost, capability:import:outline, doc-code-map:import-dialects-and-the-fidelity-report, doc-code-map:import-screen]
 ---
 
-Upload an export from another wiki and Wikistead recreates it as pages in a space. Three formats are
+Upload an export from another wiki and Wikistead recreates it as pages in a space. Four formats are
 recognised from the archive itself, so you upload the file your old tool gave you rather than telling
 us what it is.
 
@@ -11,6 +12,7 @@ us what it is.
 | **Obsidian** | A zip of the vault folder |
 | **Notion** | The official Markdown & CSV export |
 | **Confluence** | The HTML export |
+| **Docmost** | The Markdown export of a page or a space |
 | **Wikistead** | A zip this product exported (used for moving content between workspaces) |
 
 ## Running one
@@ -19,12 +21,8 @@ Open the space, then **Space settings → Import**. Choose the archive and start
 on that screen when the import finishes.
 
 Imported pages are **published as they arrive**. If you would rather read them over before anybody
-else does, turn the publish switch off before starting and everything lands as a draft instead.
-
-A large archive is handled as a job rather than in the request, and the screen's address then carries
-the import's own id. **You can leave the page** and come back to that link later: the progress and the
-report are held on the server, so closing the tab does not lose them. One import runs per space at a
-time.
+else does, turn the publish switch off before starting and everything lands as a draft instead. A
+large archive runs as a background job instead of finishing on the spot — see below.
 
 ## What arrives, and what does not
 
@@ -49,6 +47,11 @@ The report you get at the end names what did not survive, item by item, rather t
   the report names each one and the text inside them is kept, so the pages beside them arrive
   normally rather than the whole upload being refused.
 - **Titles** come from the folder and file names unless the archive carries a manifest of its own.
+  A Docmost export is the exception in the other direction: its file names cannot hold every
+  character a title can (a `/` is dropped), so the title is taken from the heading at the top of each
+  file, which is where the original survives. That heading is not repeated in the page body.
+- **A Docmost page icon is not carried over.** Pages here do not have one. The report names each page
+  that had an icon, so a workspace that used them for navigation can see what to redo.
 
 ## Large imports
 

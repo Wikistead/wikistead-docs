@@ -1,5 +1,6 @@
 ---
 title: Recipes
+documented-surfaces: none  # worked examples composing surfaces already ledgered elsewhere
 ---
 
 Three integrations that work with today's product and no added capability. Each names which surface does which half, because the division is not arbitrary: **webhooks tell you something happened, the REST API answers questions, and page bodies are written through [MCP](/integrations/mcp/)**.

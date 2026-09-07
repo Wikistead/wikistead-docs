@@ -1,5 +1,6 @@
 ---
 title: レシピ
+documented-surfaces: none  # worked examples composing surfaces already ledgered elsewhere
 ---
 
 いまある機能だけで組める連携を 3 つ紹介します。それぞれ、どの連携方法がどの役目を担うのかを書いています。この分担には理由があります。**出来事の通知は Webhook、データの取得は REST API、ページ本文の書き込みは [MCP](/ja/integrations/mcp/) が担当します。**

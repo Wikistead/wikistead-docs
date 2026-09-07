@@ -1,6 +1,9 @@
 ---
 title: Callouts
+documented-surfaces: [macro:directive:note, macro:directive:info, macro:directive:tip, macro:directive:warning, macro:directive:danger]
 ---
+
+This section covers the editor's macros — `:::` directives and fenced-code blocks. For plain Markdown notation (headings, links, highlight, footnotes, math…), see [Markdown notation](/reference/markdown-notation/).
 
 Callouts (admonitions) put a tinted, icon-carrying panel around a block of Markdown — for the sentence the reader must not miss. Five types ship, each its own directive:
 

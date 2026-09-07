@@ -1,5 +1,6 @@
 ---
 title: スペース設定
+documented-surfaces: [web-route:/spaces/:spaceId/settings/*]
 ---
 
 スペースにはそれぞれ設定があります。サイドバーのスペース名の横にある歯車アイコンから開きます。タブは次の 6 つです。

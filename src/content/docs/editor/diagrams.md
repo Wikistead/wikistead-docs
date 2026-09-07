@@ -1,5 +1,6 @@
 ---
 title: Diagrams
+documented-surfaces: [macro:fence:mermaid, macro:fence:plantuml]
 ---
 
 Diagrams are fenced code blocks with a language tag — standard Markdown, rendered in place. The text stays the canonical form; the picture is derived from it.

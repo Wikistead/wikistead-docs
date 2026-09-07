@@ -1,5 +1,6 @@
 ---
 title: ページリスト
+documented-surfaces: [macro:directive:children]
 ---
 
 `:::children` を置くと、**そのページの直下にある子ページ**の一覧が自動で表示されます。索引のページやまとめのページに置いておけば、内容が古くなることがありません。

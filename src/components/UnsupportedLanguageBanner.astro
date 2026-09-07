@@ -1,0 +1,68 @@
+---
+// #713-S5: the docs site stays en/ja only (ADR-228's ruling: 41 pages × 11 languages drifts, so
+// docs does not chase the app's 10 new languages). A reader whose browser is in one of THOSE
+// languages gets no docs of their own — this banner says so honestly, rather than silently serving
+// English with no explanation.
+//
+// Client-side, not server/build-time: Astro's docs pages are static, so there is no per-request
+// Accept-Language to branch on at build time. The check runs once in the browser, against the
+// site's OWN configured locales (read from Starlight's config, not hardcoded 'en'/'ja' — the site
+// growing a THIRD docs locale one day should not require finding and updating this string too).
+//
+// Dismissible per #1104's precedent (a banner that cannot be closed is a banner people learn to
+// ignore) — sessionStorage, not localStorage: the point is "I've seen this on THIS visit", not
+// "never tell me again," since a reader may come back after content actually grows a locale.
+import config from 'virtual:starlight/user-config';
+
+const label = Astro.locals.t('docsBanner.unsupportedLanguage');
+const siteLangs = JSON.stringify(Object.values(config.locales ?? {}).map((l) => l?.lang).filter(Boolean));
+---
+
+<div id="wks-lang-banner" class="wks-lang-banner" hidden data-pagefind-ignore>
+  <span>{label}</span>
+  <button type="button" id="wks-lang-banner-dismiss" aria-label="Dismiss">&times;</button>
+</div>
+
+<style>
+  @layer starlight.core {
+    .wks-lang-banner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      padding: var(--sl-nav-pad-y) var(--sl-nav-pad-x);
+      background-color: var(--sl-color-bg-accent);
+      color: var(--sl-color-text-invert);
+      line-height: var(--sl-line-height-headings);
+      text-align: center;
+      text-wrap: balance;
+      box-shadow: var(--sl-shadow-sm);
+    }
+    .wks-lang-banner button {
+      all: unset;
+      cursor: pointer;
+      font-size: 1.25rem;
+      line-height: 1;
+      padding: 0 0.25rem;
+    }
+  }
+</style>
+
+<script define:vars={{ siteLangs }}>
+  (() => {
+    const KEY = 'wks-lang-banner-dismissed';
+    const banner = document.getElementById('wks-lang-banner');
+    if (!banner) return;
+    try {
+      if (sessionStorage.getItem(KEY)) return;
+      const primary = (navigator.language || '').toLowerCase().split('-')[0];
+      const known = new Set(siteLangs.map((l) => l.toLowerCase().split('-')[0]));
+      if (known.has(primary)) return; // the reader's language IS a site locale — nothing to say
+      banner.hidden = false;
+      document.getElementById('wks-lang-banner-dismiss')?.addEventListener('click', () => {
+        banner.hidden = true;
+        try { sessionStorage.setItem(KEY, '1'); } catch { /* private mode */ }
+      });
+    } catch { /* private mode: fail closed (no banner) rather than risk erroring the page */ }
+  })();
+</script>

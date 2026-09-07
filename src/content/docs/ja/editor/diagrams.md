@@ -1,5 +1,6 @@
 ---
 title: 図（ダイアグラム）
+documented-surfaces: [macro:fence:mermaid, macro:fence:plantuml]
 ---
 
 図は、言語タグを付けたコードフェンスとして書きます。標準の Markdown のまま、ページ上で描画されます。元になるのはあくまでテキストで、図はそこから描かれます。

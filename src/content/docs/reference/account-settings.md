@@ -9,7 +9,7 @@ This page is generated from the product’s source, so it cannot drift from what
   AUTO-GENERATED — DO NOT EDIT BY HAND.
   Source: apps/server/src/settings-catalog.ts.
   Regenerate: pnpm docs:gen   ·   Verify (CI): pnpm docs:check
-  The "code is truth" account-settings reference (ADR-080 doc↔code linkage).
+  The "code is truth" account-settings reference.
 -->
 
 
@@ -37,6 +37,25 @@ This page is generated from the product’s source, so it cannot drift from what
 |---|---|
 | `off` | Pure vim: registers and the OS clipboard stay separate; `"+y` / `"+p` are the only bridge (the default). |
 | `paste` | A plain `p` / `P` pastes the system clipboard (URLs auto-linkify like Ctrl+V); `y`/`d` never write it. |
+
+## Mail language (mail only, not the app UI)
+
+| Value | Meaning |
+|---|---|
+| `en` | Mail from this workspace is written in English. |
+| `ja` | Mail from this workspace is written in Japanese. |
+| `de` | Mail from this workspace is written in German. |
+| `fr` | Mail from this workspace is written in French. |
+| `es` | Mail from this workspace is written in Spanish. |
+| `it` | Mail from this workspace is written in Italian. |
+| `nl` | Mail from this workspace is written in Dutch. |
+| `pt-BR` | Mail from this workspace is written in Portuguese (Brazil). |
+| `ru` | Mail from this workspace is written in Russian. |
+| `uk` | Mail from this workspace is written in Ukrainian. |
+| `zh-Hans` | Mail from this workspace is written in Simplified Chinese. |
+| `ko` | Mail from this workspace is written in Korean. |
+
+Unset falls back to the workspace default, then English.
 
 ## Custom key bindings
 

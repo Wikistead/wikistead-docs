@@ -1,5 +1,6 @@
 ---
 title: リファレンス
+documented-surfaces: none  # index of reference pages, not a surface itself
 ---
 
 このサイトが対象にしているバージョンで、製品が持っているものの一覧です。
@@ -14,6 +15,7 @@ title: リファレンス
 
 ## 手で書いている記法リファレンス
 
+- **[Markdown 記法](/ja/reference/markdown-notation/)**：CommonMark / GFM に加えて、Wikistead 固有の記法(ハイライト・脚注・数式・コードフェンスの属性)の早見表です。
 - **[マクロ記法](/ja/reference/macro-notation/)**：組み込みマクロの書き方を 1 ページにまとめています。
 
 ## ソースリポジトリにある文書

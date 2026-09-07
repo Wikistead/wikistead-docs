@@ -9,14 +9,14 @@ address it was created with.
 
 ## Adding one
 
-Add the domain, publish the DNS record the screen shows you, then verify. Verification is what proves
-you control the name; until it passes, the domain is listed as pending and nothing is served on
-it. Once it passes the domain is listed as verified.
+Add the domain, publish the DNS record the screen shows you, then press **Verify**. Verification is
+what proves you control the name; until it passes, the domain shows **Pending** and nothing is served
+on it. Once it passes it shows **Verified**.
 
 The record has three parts, and the screen names each one: the type (TXT), the host, and the value.
 The host and the value copy separately, because a DNS panel takes them in different boxes. If
 verification answers that the record was not found, the usual reason is that DNS has not spread yet.
-Wait a few minutes and verify again.
+Wait a few minutes and press **Verify** again.
 
 **Release** takes effect immediately, and adding the domain back means proving ownership again.
 

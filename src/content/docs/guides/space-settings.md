@@ -1,5 +1,6 @@
 ---
 title: Space settings
+documented-surfaces: [web-route:/spaces/:spaceId/settings/*]
 ---
 
 Each space has its own settings, reached from the gear on the space in the sidebar. Six tabs, in order:

@@ -1,5 +1,6 @@
 ---
 title: Page lists
+documented-surfaces: [macro:directive:children]
 ---
 
 `:::children` renders an auto-updating list of **this page's direct child pages** — the block to put on any hub or index page so it never goes stale.

@@ -1,5 +1,6 @@
 ---
 title: Embeds & transclusion
+documented-surfaces: [macro:directive:embed-page, macro:directive:embed-external]
 ---
 
 Two directives bring outside content into a page: `:::embed-page` embeds **another Wikistead page**, `:::embed-external` embeds **an allowlisted external URL**. Both are inserted from the macro palette with a picker — the raw form exists for portability, not for hand-typing.

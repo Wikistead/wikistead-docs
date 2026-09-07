@@ -1,5 +1,6 @@
 ---
 title: Self-hosting
+documented-surfaces: none  # orients to the canonical self-hosting guide in the source repo, not a product surface
 ---
 
 Wikistead's Community Edition is AGPL open source, and self-hosting is a first-class path — not a demo mode. The **canonical self-hosting guide ships inside the source repository** ([`docs/self-hosting.md`](https://github.com/wikistead/wikistead/blob/main/docs/self-hosting.md)), versioned with the exact code it deploys. This page orients you; the repository guide is the one to follow.

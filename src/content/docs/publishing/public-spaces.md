@@ -1,5 +1,8 @@
 ---
 title: Public spaces & pages
+documented-surfaces: [admin-surface:public, web-route:/pub/space/:spaceId, web-route:/pub/:pageId]
+screens:
+  admin-surface:public: [toggleTitle]
 ---
 
 How you write and how you publish are separate decisions. The same page can stay private, open to the team, or go public on the web — publishing is a setting, not a migration.
@@ -14,7 +17,7 @@ How you write and how you publish are separate decisions. The same page can stay
 
 ## Going public
 
-Public exposure is off until a workspace admin enables it (**Admin → Public access**). With it enabled:
+Public exposure is off until a workspace admin turns on **Allow public pages in this workspace** (**Admin → Public access**). With it enabled:
 
 - **Publish a page publicly** — the page becomes readable at its public URL, as its last *published* version.
 - **A public space** — the space's published, public pages appear as a read-only site with its own tree navigation.

@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "node scripts/pull-generated.mjs && node scripts/check-ee-badges.mjs && node scripts/check-ja-prose.mjs && node scripts/check-internal-words.mjs && node scripts/check-admin-tab-names.mjs && node scripts/check-screen-vocabulary.mjs && node scripts/check-ia-spine.mjs && node scripts/check-no-build-internals.mjs && astro build && node scripts/check-internal-links.mjs && node scripts/check-translation-coverage.mjs",
+    "build": "node scripts/pull-generated.mjs && node scripts/check-ja-prose.mjs && node scripts/check-internal-words.mjs && node scripts/check-ia-spine.mjs && node scripts/check-no-build-internals.mjs && astro build && node scripts/check-internal-links.mjs && node scripts/check-translation-coverage.mjs && node scripts/check-lang-banner.mjs",
     "preview": "astro preview",
     "pull:generated": "node scripts/pull-generated.mjs",
     "check:ee-badges": "node scripts/check-ee-badges.mjs",
@@ -20,7 +20,9 @@
     "check:screen-vocabulary": "node scripts/check-screen-vocabulary.mjs",
     "check:ia-spine": "node scripts/check-ia-spine.mjs",
     "check:no-build-internals": "node scripts/check-no-build-internals.mjs",
-    "check:internal-links": "node scripts/check-internal-links.mjs"
+    "check:internal-links": "node scripts/check-internal-links.mjs",
+    "check:screen-declarations": "node scripts/check-screen-declarations.mjs",
+    "check:lang-banner": "node scripts/check-lang-banner.mjs"
   },
   "dependencies": {
     "@astrojs/starlight": "^0.41.7",

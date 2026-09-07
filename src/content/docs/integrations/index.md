@@ -1,5 +1,6 @@
 ---
 title: Composing Wikistead with other tools
+documented-surfaces: none  # orients across three surfaces (API/webhooks/MCP), each already ledgered on its own page
 ---
 
 Wikistead is built to sit *inside* your toolchain rather than replace it. Three surfaces do that work, and they are deliberately different from each other:

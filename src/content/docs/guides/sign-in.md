@@ -1,5 +1,6 @@
 ---
 title: Signing in
+documented-surfaces: [web-route:/reset-password, web-route:/join, web-route:/join/workspace, web-route:/login, web-route:/login/recovery]
 ---
 
 Members sign in at `/login`. Which doors the screen offers is your admin's choice ([Admin → Authentication](/admin/sign-in-methods/)): **email + password**, **single sign-on (OIDC)** through your organisation's identity provider, or both.

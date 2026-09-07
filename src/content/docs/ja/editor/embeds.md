@@ -1,5 +1,6 @@
 ---
 title: 埋め込みとページ埋め込み
+documented-surfaces: [macro:directive:embed-page, macro:directive:embed-external]
 ---
 
 別の場所にある内容をページに取り込むディレクティブが 2 つあります。`:::embed-page` は**他の Wikistead ページ**を、`:::embed-external` は**許可リストに載っている外部の URL** を埋め込みます。どちらもマクロパレットから選んで挿入します。生の記法があるのは、書き出したときに内容が残るようにするためで、手で打つことは想定していません。

@@ -1,5 +1,6 @@
 ---
 title: Tables
+documented-surfaces: [macro:directive:table]
 ---
 
 Wikistead has two table forms, and moves between them for you: standard **GFM pipe tables** for everything simple, and the **`:::table` macro** — an HTML-bodied table — the moment you need merged cells or alignment a pipe table cannot express.
