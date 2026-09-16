@@ -1,5 +1,19 @@
 {
   "surfaces": {
+    "admin-surface:ai": {
+      "enableToggleLabel": {
+        "en": "Enable AI for this workspace",
+        "ja": "このワークスペースで AI を有効にする"
+      },
+      "remove": {
+        "en": "Remove configuration",
+        "ja": "設定を削除"
+      },
+      "save": {
+        "en": "Save",
+        "ja": "保存"
+      }
+    },
     "admin-surface:analytics": {
       "unique": {
         "en": "Unique viewers",

@@ -48,6 +48,7 @@ documented-surfaces: [macro:directive:note, macro:directive:info, macro:directiv
 
 ## 補足
 
+- **既知の制限（v0.1.0）：** 本文を編集した直後は、ほかの欄への移動（Tab・クリックのどちらも）が 1 回目だけ本文に戻ります。もう一度同じ操作をすると移動できます。
 - 種類の指定では大文字と小文字を区別しません（`:::WARNING` と `:::warning` は同じです）。
 - 知らない種類（`:::something`）を書いてもエラーにはならず、`note` として描画されます。Obsidian と同じ扱いです。
 - エクスポートした Markdown には `:::` のディレクティブがそのまま残ります。`:::` は広く使われている書き方ですし、中身はもともと標準の Markdown だからです。

@@ -9,11 +9,11 @@ screens:
 
 ## Events
 
-What you can subscribe to is the things that happen in a workspace — a page published, a member joined, and the rest. The complete list is [webhook events](/reference/webhook-events/). New product features arrive with their events.
+What you can subscribe to is the things that happen in a workspace — a page published, a member joined, and the rest. The complete list is [webhook events](/reference/webhook-events/).
 
 ## What is never emitted
 
-Webhooks respect visibility: **drafts and private content do not produce events** to your endpoints. A webhook is a projection of what happened, shaped by the same rules a reader faces — not a side channel around them.
+Webhooks respect visibility: **drafts and private content do not produce events** to your endpoints. A webhook cannot be used to read content its recipient could not see.
 
 ## Operating
 

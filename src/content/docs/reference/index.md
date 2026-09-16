@@ -11,14 +11,14 @@ The reference section lists what the product exposes, at the exact version this 
 - **[Webhook events](/reference/webhook-events/)** — every event a [webhook](/admin/webhooks/) can subscribe to.
 - **[Account settings](/reference/account-settings/)** — the full catalog of per-account settings.
 
-## Written notation reference
+## Notation
 
 - **[Markdown notation](/reference/markdown-notation/)** — a cheat sheet for CommonMark/GFM plus Wikistead's own marks (highlight, footnotes, math, code fence attributes).
 - **[Macro notation](/reference/macro-notation/)** — the canonical syntax of every built-in macro on one page.
 
-## What is canonical elsewhere
+## In the source repository
 
-Two references live *inside the source repository*, versioned with the code, and are deliberately not duplicated here:
+Two references live in the source repository, versioned with the code:
 
 - **Self-hosting** — [`docs/self-hosting.md`](https://github.com/wikistead/wikistead/blob/main/docs/self-hosting.md) (see [Self-hosting](/getting-started/self-hosting/)).
 - **REST API** — [`docs/api-reference.md`](https://github.com/wikistead/wikistead/blob/main/docs/api-reference.md).

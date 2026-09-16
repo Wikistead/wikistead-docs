@@ -71,6 +71,7 @@ the page exists. So an event marked as sent can still be withheld for one page.
 | `tenant.saml_updated` | The workspace's SAML single sign-on settings were changed (EE). | Yes |
 | `tenant.plan_changed` | The workspace's plan changed. | Yes |
 | `tenant.ai_toggled` | An admin turned AI features on or off for the workspace. | Yes |
+| `tenant.ai_provider_configured` | An admin configured (or replaced) the workspace's own AI provider key. | Yes |
 | `usage.threshold_crossed` | Usage crossed an alert threshold, ahead of the limit that would start turning requests away. EE and Cloud notify the admin. | Yes |
 | `orphan_draft.enumerated` | An admin listed the private drafts whose author is gone. | Yes |
 | `orphan_draft.claimed` | An admin took temporary access to an orphaned draft; the claim is recorded. | Yes, without `pageId` |

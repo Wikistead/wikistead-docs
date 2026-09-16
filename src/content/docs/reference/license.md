@@ -10,9 +10,8 @@ documented-surfaces: none  # licensing and editions summary, not a product surfa
 modify it, and host it for your organisation. Enterprise features are proprietary and are not part of
 that source.
 
-Every bundled dependency is permissively licensed (MIT, Apache-2.0, BSD, ISC). A check runs on every
-change and refuses a dependency that would change that, so the AGPL obligation is about *this* code
-rather than something buried in a package.
+Every bundled dependency is permissively licensed (MIT, Apache-2.0, BSD, ISC), so the AGPL obligation
+concerns this code and not something in a dependency.
 
 ## What the Community Edition gives you
 
@@ -20,10 +19,10 @@ The whole product: real-time collaborative editing, spaces and pages, publishing
 search, import from other tools, the API and the AI connector, and the administration console.
 Single sign-on (OIDC) through your organisation's identity provider is part of it, configured per workspace.
 
-## What is gated today
+## Cloud-only features
 
-These five capabilities are gated. The list here is a summary of how things stand as this page is
-written; the authority is [what each plan includes](/reference/plan-contents/).
+These five features are available on Cloud plans only. [What each plan includes](/reference/plan-contents/)
+is the up-to-date list.
 
 | Capability | What it is |
 |---|---|
@@ -35,9 +34,9 @@ written; the authority is [what each plan includes](/reference/plan-contents/).
 
 In a Community Edition deployment these screens are **absent**.
 
-## Hosted
+## Cloud
 
-The hosted service runs the same product, with the gated capabilities available by plan.
+Wikistead Cloud runs the same product, with these features available by plan.
 
 ## What the AGPL asks of you
 

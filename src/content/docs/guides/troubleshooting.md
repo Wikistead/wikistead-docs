@@ -14,8 +14,8 @@ a client deleted at the provider's end. Recovery is an operator action with a br
 [tenant OIDC lockout recovery](https://github.com/wikistead/wikistead/blob/main/docs/runbooks/tenant-oidc-lockout-recovery.md).
 
 **One person cannot get in and their phone is gone.** They can do this themselves with a recovery
-code — see [Your account](/settings/account/). It resets every second factor, so it is a recovery,
-not a shortcut.
+code — see [Your account](/settings/account/). It resets every second factor, so enrol a new one
+afterwards.
 
 **Sign-in works and then immediately signs out again.** The session cookie is marked `secure` in
 production, so it is dropped on a plain `http://` origin. Serve the product over HTTPS; the
@@ -28,8 +28,7 @@ published version. Publish it, or open it in the editor to see the draft. The
 [import report](/guides/import/) says this too, on the screen where the import finished.
 
 **Search does not find a page you can see.** Indexing is a moment behind the edit that caused it.
-When a page stays missing, the index and the permissions have diverged — the search entry is checked
-against live permissions before it is shown, so the safe direction is the one you are seeing.
+If a page stays missing for more than a few minutes, report it as a bug.
 
 **`dd`, or a jump like `j` / `k`, deletes or skips a whole table, diagram or drawing in one
 step, not one line.** That is deliberate: a rendered block behaves as the one thing it looks like
@@ -56,8 +55,8 @@ Those are stored only in the permission store, so a backup of it is not optional
 a substitute for one.
 
 **The server refuses to start and says so.** That is deliberate: it fails on a missing encryption
-key, on a permission store configured to keep tuples in memory, and on a secret that is published in
-the public repository's own fixtures. Each message names the variable — every one of them is in the
+key, on a permission store configured to keep tuples in memory, and on a secret that matches a publicly
+known example value. Each message names the variable — every one of them is in the
 [environment reference](/reference/environment-variables/).
 
 ## Still stuck

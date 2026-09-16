@@ -53,6 +53,8 @@ A collapsible section with the label as its summary line — the standard place 
 
 ![A collapsed disclosure block, closed by default.](../../../assets/screenshots/details.png)
 
+**Known limitation (v0.1.0):** right after you edit the body, the first move to another field — by Tab or by clicking — returns to the body. Move again and it goes through.
+
 ## Editing model
 
 Containers are edited **in place**: clicking into a slot opens an inline editor for that slot's Markdown, and the frame never collapses while you work. The raw `:::` form remains available (Source mode) and is what exports carry — a reader without Wikistead still sees each item's content in order.

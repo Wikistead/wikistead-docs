@@ -66,4 +66,4 @@ const x = 1
 
 ## AI アシスタント向け
 
-この記法(このページに加えて [Markdown 記法](/ja/reference/markdown-notation/))の機械可読版は、ワークスペースの [MCP コネクタ](https://modelcontextprotocol.io/)（`get_syntax_reference`）で提供されます。エディタが使っているのと同じ定義から生成しているため、ワークスペースに書き込む AI アシスタントも、これらのページとまったく同じ書き方を参照します。
+この記法（このページに加えて [Markdown 記法](/ja/reference/markdown-notation/)）の機械可読版は、ワークスペースの [MCP コネクタ](https://modelcontextprotocol.io/)（`get_syntax_reference`）で提供されます。エディタが使っているのと同じ定義から生成しているため、ワークスペースに書き込む AI アシスタントも、これらのページとまったく同じ書き方を参照します。

@@ -33,8 +33,8 @@ https://example.com/dashboard
 
 External embeds render as a **sandboxed iframe**, and only for hosts your admin has allowlisted (**Admin → Embeds**). A URL whose host is not on the list degrades to a plain link — never a broken frame, and never an arbitrary iframe a visitor can be tracked through.
 
-This is a deliberate trust boundary: embeds are how you compose Wikistead with dashboards, videos and design tools, and the allowlist is how an admin decides which third parties get to run inside your pages.
+The allowlist is how an admin decides which external services may run inside your pages.
 
 ## Export behaviour
 
-Both embeds **degrade to links** in Markdown/HTML export — the honest representation of content that lives elsewhere (Open formats: an export never contains a broken or privileged frame).
+Both embeds **become links** in Markdown and HTML exports. An export never contains a broken or privileged frame.

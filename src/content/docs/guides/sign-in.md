@@ -5,7 +5,7 @@ documented-surfaces: [web-route:/reset-password, web-route:/join, web-route:/joi
 
 Members sign in at `/login`. Which doors the screen offers is your admin's choice ([Admin → Authentication](/admin/sign-in-methods/)): **email + password**, **single sign-on (OIDC)** through your organisation's identity provider, or both.
 
-Each door says which one it is: single sign-on buttons carry the name your admin gave the connection (or the provider's own brand for Google and Microsoft), and the password form's button says it signs you in with your email address. Nothing on the screen is just "Sign in".
+Each door says which one it is: single sign-on buttons carry the name your admin gave the connection (or the provider's own brand for Google and Microsoft), and the password form's button says it signs you in with your email address.
 
 Guests never see this screen — a [share link](/guides/share-links/) needs no account at all.
 

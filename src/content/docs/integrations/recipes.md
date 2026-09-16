@@ -3,7 +3,7 @@ title: Recipes
 documented-surfaces: none  # worked examples composing surfaces already ledgered elsewhere
 ---
 
-Three integrations that work with today's product and no added capability. Each names which surface does which half, because the division is not arbitrary: **webhooks tell you something happened, the REST API answers questions, and page bodies are written through [MCP](/integrations/mcp/)**.
+Three integrations that work with today's product and no added capability. Each names which surface does which half: **webhooks tell you something happened, the REST API answers questions, and page bodies are written through [MCP](/integrations/mcp/)**.
 
 ## Tell Slack when a page is published
 
@@ -29,7 +29,7 @@ function verify(rawBody, headers, secret) {
 }
 ```
 
-**4. Read what changed.** The event carries ids, not content — deliberately, so a webhook cannot become a content side channel. Fetch the page with the key from step 1:
+**4. Read what changed.** The event carries ids, not content. Fetch the page with the key from step 1:
 
 ```bash
 curl -H "Authorization: Bearer wks_..." \
@@ -38,7 +38,7 @@ curl -H "Authorization: Bearer wks_..." \
 
 Then post the title and link to Slack. Answer the webhook `2xx` as soon as you have verified it — anything else counts as a failed delivery and is retried.
 
-**What you will not see.** Drafts and private pages produce no events at all, so a "someone published something" bot cannot leak work in progress. If your channel looks quiet, that is usually the honest answer rather than a broken hook.
+**What you will not see.** Drafts and private pages produce no events at all, so a "someone published something" bot cannot leak work in progress.
 
 ## Have an assistant draft the weekly digest
 
@@ -51,7 +51,7 @@ Connect the assistant once ([MCP connector](/integrations/mcp/)), then ask it fo
 3. `edit_body` with `op: "append"` to write the sections, one block at a time. It can also `replace_section` under a heading, which is how the digest gets updated rather than duplicated when you ask for a revision.
 4. **You** publish — or you edit it first, since the draft is a live page you can open and type into while the assistant is still working.
 
-The order matters and is worth keeping: an assistant that drafts is a colleague, an assistant that publishes is a broadcaster. `publish_page` exists, so an agent *can* be trusted with the last step deliberately; it just is not the default shape of this recipe.
+`publish_page` exists if you want the assistant to publish as well; this recipe leaves that step to a person.
 
 ## Keep an external index in sync
 
@@ -59,7 +59,7 @@ The composition of both halves, and the honest limits of each.
 
 - **Trigger**: subscribe to `page.published`, `page.trashed` and `page.deleted`. That is the complete set of moments the readable corpus changes.
 - **Fetch**: `GET /api/pages/{pageId}/published` for the Markdown, or `GET /api/pages/{pageId}/export` when you want the page with its attachments. For a first full load, `GET /api/spaces/{spaceId}/export` gives you the whole space at once instead of a walk.
-- **Authorise**: one key with *pages: read*, scoped to the spaces you actually index. The key's reach is shown in the console, so an audit six months later does not depend on remembering.
-- **Do not** try to push content back through REST: there is no endpoint that writes a page body, because the body is a live collaborative document rather than a field. Write-back is what the MCP `edit_body` tool is for, and it goes through the same editing path a person does.
+- **Authorise**: one key with *pages: read*, scoped to the spaces you actually index. The key's reach is shown in the console.
+- **Do not** try to push content back through REST: there is no endpoint that writes a page body. Write-back is what the MCP `edit_body` tool is for, and it goes through the same editing path a person does.
 
 **Rate limits** apply per key and per workspace ([what each plan includes](/reference/plan-contents/)), so a re-index of a large space should walk at the pace the events arrive rather than in one burst.

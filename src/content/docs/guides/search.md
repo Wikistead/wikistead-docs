@@ -12,18 +12,16 @@ comes first even when another page repeats the words more often.
 is not a result at all, and search never becomes a way to learn that a page exists.
 
 **Access you hold through a group counts.** A page shared with a group you belong to is findable the
-same way a page shared with you directly is — you do not have to know which of the two gave you the
-page.
+same way a page shared with you directly is.
 
-Guests searching through a share link are scoped to the space the link opened, for the same reason.
+Guests searching through a share link see results from the space the link opened.
 
 ## Japanese, Chinese and Korean
 
 Japanese text has no spaces to split on, so search uses a segmenter rather than whitespace: 東京都
-matches a body containing 東京都庁, and スカイツリー matches wherever it appears in the text. The
-segmenters for Japanese, Chinese, Korean and English are applied deliberately to titles and bodies
-rather than guessed per page — automatic detection is unreliable on short queries and on Japanese
-text with a few English words in it, which is most technical writing.
+matches a body containing 東京都庁, and スカイツリー matches wherever it appears in the text. Segmentation
+for Japanese, Chinese, Korean and English applies to titles and bodies alike, including text that
+mixes Japanese with English words.
 
 ## What is not searched
 

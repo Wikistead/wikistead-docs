@@ -14,9 +14,11 @@ This page is generated from the product’s source, so it cannot drift from what
 
 
 
-Each row is one feature or limit a plan can include. Self-hosted
-Community/Enterprise builds have every one of them enabled or unlimited;
-the per-tier Cloud values are published separately.
+Each row is one feature or limit a plan can include. A self-hosted Enterprise build has every
+one of them enabled or unlimited. A self-hosted Community build has every Community-scoped row
+enabled or unlimited too. Enterprise-only features have no enforcement code in a Community build
+at all — unlimited is a ceiling on a limit, never a grant of a feature a Community build does not
+ship. The per-tier Cloud values are published separately.
 
 | Feature | What it controls | Self-host (Community) | Enforced at | Downgrade |
 |---|---|---|---|---|
@@ -26,12 +28,12 @@ the per-tier Cloud values are published separately.
 | **Page templates** (`maxTemplates`) | Reusable page templates a workspace may hold. Unlimited on all plans. | Unlimited | POST /templates (inert while unlimited) | over-cap blocks new templates; existing templates are kept |
 | **Outbound webhooks** (`webhooks`) | Event-notification webhooks. On for self-hosted builds; on Cloud, Personal and up. | Enabled | POST /webhooks (creation) | creation blocked; already-created hooks keep delivering |
 | **History retention** (`historyRetentionDays`) | Page revision history a member can see and restore, in days. | Unlimited | revisions read (retention cutoff) | older revisions are hidden and not restorable; nothing is deleted |
-| **Storage** (`maxStorageBytes`) | Total confirmed attachment storage per workspace, in bytes. | Unlimited | when an upload is authorized (plus metered overage where configured) | new uploads freeze; existing attachments are kept |
+| **Storage** (`maxStorageBytes`) | Total confirmed attachment + revision-body storage per workspace, in bytes. Each page keeps its latest 200 revisions. | Unlimited | when an upload is authorized (plus metered overage where configured) | new uploads freeze; existing attachments are kept |
 | **Custom branding** (`branding`) | Workspace/space accent color and workspace logo. Personal light/dark theme is never gated. | Enabled | branding write (403) + strip on read | reverts to the default look; the stored value survives for a re-upgrade |
 | **API access** (`apiAccess`) | Issuance of API keys. | Enabled | POST /api-keys | issuance gated; existing keys keep working |
 | **Custom domain** (`customDomain`) | A custom domain for the workspace, such as docs.acme.com. | Enabled | custom-domain add/verify | revoked on loss — the domain stops serving the workspace and is removed from routing |
-| **AI assists** (`aiFeatures`) | AI features (summarize, ask the knowledge base, etc.). Also requires a configured AI provider (bring your own key) — this switch says whether the plan includes AI; the provider is set up per deployment. | Enabled | the AI feature gate (must be both included in the plan and configured) | gated; non-destructive (metered soft-cap blocks, keeps content) |
-| **AI token allowance** (`aiTokenAllowance`) | Metered AI-token soft cap per billing window. New AI calls are refused once the window usage reaches it; existing content is untouched and an alert fires before the wall. | Unlimited | each AI call (usage for the billing window is checked before a billable completion) | new AI calls soft-cap when over the lower allowance; existing content/usage kept |
+| **AI assists** (`aiFeatures`) | AI features (summarize, ask the knowledge base, etc.). Also requires a configured AI provider (bring your own key) — this switch says whether the plan includes AI; the provider is configured per workspace. | Enabled | the AI feature gate (must be both included in the plan and configured) | gated; non-destructive (metered soft-cap blocks, keeps content) |
+| **AI token allowance** (`aiTokenAllowance`) | Metered AI-token soft cap per billing window, protecting the platform's own liability on AI calls billed to the platform. A workspace using its own (BYOK) provider is still metered for visibility but is never capped by this number — that usage costs the workspace, not the platform. | Unlimited | each AI call billed to the platform (usage for the billing window is checked before a billable completion); a BYOK call is metered but never capped here | new AI calls billed to the platform soft-cap when over the lower allowance; existing content/usage kept |
 | **Managed email sender** (`managedEmail`) | Notification email is sent through the managed provider instead of self-hosted SMTP. | Enabled | whenever an email is sent (immediate sends and queued deliveries) | sending falls back to the self-hosted default (SMTP, or nothing if none is configured); the feature itself is never gated |
 | **User/third-party macros** (`userMacros`) | Whether the workspace may run community/third-party macros. Also needs a workspace-admin allowlist; a macro can never grant itself access. Built-in macros are always allowed. | Enabled | the macro permission gate (plan AND admin allowlist) | gated; built-in macros keep working |
 | **MCP write tools** (`mcpWrite`) | Whether the workspace may use MCP write tools (create/edit/publish via the connector). Read tools are on every plan; only writing is gated (Cloud). Permissions still apply to each page. | Enabled | MCP write-tool calls (checked together with the token write scope) | write tools gated; read tools + previously-created pages keep working |

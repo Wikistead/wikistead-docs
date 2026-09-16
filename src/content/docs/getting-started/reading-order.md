@@ -5,7 +5,7 @@ sidebar:
   order: 0
 ---
 
-The splash page and the sidebar both list every page; neither tells you which one to open first. This is that order — six pages, roughly, not an index of the site.
+The sidebar lists every page. If you are new, read these six in this order.
 
 1. [First steps](/getting-started/first-steps/) — create a page, organise it into a space, share it, invite a teammate.
 2. [Markdown notation](/reference/markdown-notation/) — a cheat sheet for the notation every later page assumes you already know.

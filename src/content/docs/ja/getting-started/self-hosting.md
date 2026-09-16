@@ -3,7 +3,7 @@ title: セルフホスト
 documented-surfaces: none  # orients to the canonical self-hosting guide in the source repo, not a product surface
 ---
 
-Wikistead の Community Edition は AGPL のオープンソースで、セルフホストはデモ用の選択肢ではなく、正式な使い方の 1 つです。**手順の元になる文書は、ソースリポジトリに入っている [`docs/self-hosting.md`](https://github.com/wikistead/wikistead/blob/main/docs/self-hosting.md)** です（デプロイするコードと同じようにバージョン管理されています）。このページは概要です。実際に作業するときはリポジトリ側のガイドに従ってください。
+Wikistead の Community Edition は AGPL のオープンソースで、自分のサーバーで動かせます。**手順の元になる文書は、ソースリポジトリに入っている [`docs/self-hosting.md`](https://github.com/wikistead/wikistead/blob/main/docs/self-hosting.md)** です（デプロイするコードと一緒にバージョン管理されています）。このページは概要です。実際に作業するときはリポジトリ側のガイドに従ってください。
 
 ## 最短の手順
 
@@ -45,4 +45,4 @@ Wikistead は 3 つのアプリケーションと、それを支えるインフ�
 
 ## Community Edition と Cloud の違い
 
-セルフホストの Community Edition では、すべての機能が**無制限**で使えます。有料版へ誘導するための人為的な上限もありません。[プラン別の機能一覧](/ja/reference/plan-contents/)で、それぞれの機能が何を制御し、Community Edition でどうなるかを正確に確認できます。
+セルフホストの Community Edition に資源の上限はありません。席数、容量、スペース数、履歴はすべて無制限です。Cloud の一部の機能（SAML のシングルサインオン、SCIM、監査ログ、Access Transparency、analytics）は、Community Edition のビルドには含まれていません（OIDC のシングルサインオンは含まれます。Cloud 限定なのは SAML 方式だけです）。[プラン別の機能一覧](/ja/reference/plan-contents/)に、機能ごとの Community Edition での扱いがあります。

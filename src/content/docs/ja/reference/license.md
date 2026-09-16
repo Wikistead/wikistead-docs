@@ -7,15 +7,15 @@ documented-surfaces: none  # licensing and editions summary, not a product surfa
 
 **Community Edition は [wikistead/wikistead](https://github.com/wikistead/wikistead) で公開されているソースで、ライセンスは AGPL-3.0 です。** 実行も、改変も、自分の組織のためのホスティングもできます。Enterprise の機能はプロプライエタリで、そのソースには入っていません。
 
-同梱している依存はすべて permissive なライセンス（MIT・Apache-2.0・BSD・ISC）です。そうでない依存を追加しようとすると、変更のたびに走る検査が止めます。つまり AGPL の義務は**このコード**についてのもので、どこかのパッケージに紛れているわけではありません。
+同梱している依存はすべて permissive なライセンス（MIT・Apache-2.0・BSD・ISC）です。AGPL の義務は**このコード**についてのもので、依存パッケージには及びません。
 
 ## Community Edition でできること
 
 製品のほぼ全体です。同時編集、スペースとページ、公開、共有リンク、検索、他ツールからの取り込み、API と AI 連携、管理コンソール。組織の IdP によるシングルサインオン（OIDC）も含まれ、ワークスペースごとに設定できます。
 
-## いま制限がかかっているもの
+## Cloud 限定の機能
 
-次の 5 つです。ここに書いてあるのは、このページを書いた時点での要約です。正典は[プラン機能のリファレンス](/reference/plan-contents/)です。
+次の 5 つは Cloud のプランでのみ使えます。最新の一覧は[プラン別の機能一覧](/ja/reference/plan-contents/)にあります。
 
 | 機能 | 内容 |
 |---|---|
@@ -27,9 +27,9 @@ documented-surfaces: none  # licensing and editions summary, not a product surfa
 
 Community Edition では、これらの画面は**そもそも出ません**。
 
-## ホスティング版
+## Cloud
 
-ホスティング版は同じ製品を動かし、制限のかかっている機能はプランに応じて使えます。
+Wikistead Cloud は同じ製品で、上の機能はプランに応じて使えます。
 
 ## AGPL が求めること
 

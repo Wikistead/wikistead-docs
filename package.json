@@ -5,13 +5,14 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "node scripts/pull-generated.mjs && node scripts/check-ja-prose.mjs && node scripts/check-internal-words.mjs && node scripts/check-ia-spine.mjs && node scripts/check-no-build-internals.mjs && astro build && node scripts/check-internal-links.mjs && node scripts/check-translation-coverage.mjs && node scripts/check-lang-banner.mjs",
+    "build": "node scripts/check-ja-prose.mjs && node scripts/check-internal-words.mjs && node scripts/check-no-feature-completeness-claims.mjs && node scripts/check-ia-spine.mjs && node scripts/check-no-build-internals.mjs && node scripts/check-font-overlap-flags.mjs && astro build && node scripts/check-internal-links.mjs && node scripts/check-translation-coverage.mjs && node scripts/check-lang-banner.mjs",
     "preview": "astro preview",
     "pull:generated": "node scripts/pull-generated.mjs",
     "check:ee-badges": "node scripts/check-ee-badges.mjs",
     "license:check": "node scripts/check-licenses.mjs",
     "check:ja-prose": "node scripts/check-ja-prose.mjs",
     "check:internal-words": "node scripts/check-internal-words.mjs",
+    "check:no-feature-completeness-claims": "node scripts/check-no-feature-completeness-claims.mjs",
     "capture": "node scripts/capture/capture-screens.mjs",
     "check:hero-scale": "node scripts/check-hero-scale.mjs",
     "check:figures": "node scripts/check-figures.mjs",
@@ -22,11 +23,11 @@
     "check:no-build-internals": "node scripts/check-no-build-internals.mjs",
     "check:internal-links": "node scripts/check-internal-links.mjs",
     "check:screen-declarations": "node scripts/check-screen-declarations.mjs",
-    "check:lang-banner": "node scripts/check-lang-banner.mjs"
+    "check:lang-banner": "node scripts/check-lang-banner.mjs",
+    "check:font-overlap-flags": "node scripts/check-font-overlap-flags.mjs"
   },
   "dependencies": {
     "@astrojs/starlight": "^0.41.7",
-    "@fontsource/inter": "^5.3.0",
     "@fontsource/noto-sans-jp": "^5.3.0",
     "@fontsource/plus-jakarta-sans": "^5.2.8",
     "astro": "^7.2.1"
@@ -37,6 +38,7 @@
     }
   },
   "devDependencies": {
+    "@fontsource/inter": "^5.3.0",
     "playwright": "1.61.0"
   }
 }

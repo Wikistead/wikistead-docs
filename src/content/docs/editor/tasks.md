@@ -28,6 +28,6 @@ Wrap a task list in `:::todo` to promote it into a tinted panel with a **progres
 
 The body stays a real GFM task list — the same interactive checkboxes, now with a count. The page header also shows an overall done/total chip for the tasks on the page, so a checklist page reads its own status at a glance.
 
-## Knowledge first, not a task tracker
+## What tasks are not
 
-Tasks in Wikistead are deliberately just Markdown: no assignees, no due dates, no board. They are for the checklists that live *inside* knowledge — runbooks, launch pages, meeting notes — and because they are plain GFM, they export everywhere and mean the same thing in every tool. For real project tracking, [compose Wikistead with a tracker](/editor/embeds/) instead of turning pages into one.
+Tasks are plain Markdown: no assignees, due dates or boards. They suit checklists inside a page — runbooks, launch pages, meeting notes — and export as GFM to any other tool. For project tracking, [embed a tracker](/editor/embeds/).

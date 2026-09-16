@@ -1,5 +1,9 @@
 {
   "tabs": {
+    "ai": {
+      "en": "AI",
+      "ja": "AI"
+    },
     "analytics": {
       "en": "Analytics",
       "ja": "アナリティクス"

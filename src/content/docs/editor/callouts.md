@@ -48,6 +48,7 @@ A callout's content is ordinary Markdown — lists, links, code fences and even 
 
 ## Notes
 
+- **Known limitation (v0.1.0):** right after you edit the body, the first move to another field — by Tab or by clicking — returns to the body. Move again and it goes through.
 - Types are case-insensitive (`:::WARNING` is `:::warning`).
 - An unknown type (`:::something`) renders as a `note` rather than breaking — the same convention Obsidian uses.
 - Exported Markdown keeps the `:::` directive verbatim; it is a widely-understood container syntax, and the content inside is standard Markdown either way.

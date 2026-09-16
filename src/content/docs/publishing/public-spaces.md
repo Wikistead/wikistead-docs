@@ -27,7 +27,7 @@ Two invariants hold everywhere on the public surface:
 - **Only published content.** Drafts and unpublished edits are never visible publicly, whatever else is configured.
 - **Read-only, existence-hiding.** Anonymous readers can read exactly what was made public; anything else answers as if it did not exist.
 
-Dynamic blocks (page lists, tag lists) render for anonymous readers as the snapshot baked when the page was published — the public surface never queries your workspace live.
+Dynamic blocks (page lists, tag lists) show anonymous readers what they contained when the page was published.
 
 ## Custom domains
 

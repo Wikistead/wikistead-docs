@@ -13,7 +13,7 @@ The console shows each caller **exactly the surfaces their permissions open** �
 - **Roles** — the *manage roles* power.
 - **Audit log** — the *view audit* power.
 
-The client does not decide this: it asks the server which surfaces are open and renders that answer, and every route double-checks on entry regardless of what any menu showed.
+Whatever a menu shows, every action is checked again on the server.
 
 ## The tabs
 

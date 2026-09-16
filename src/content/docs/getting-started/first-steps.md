@@ -46,7 +46,7 @@ See [Share links](/guides/share-links/) for expiry, space-wide links and revocat
 
 For people who should be *members* — with a name, a role and durable access — go to **Admin → Members** and send an invite. Members sign in, appear in the member list, and hold whatever role you assign.
 
-The distinction is deliberate: **members** are your team; **share links** are for everyone else. Most collaboration in Wikistead starts as a link and only becomes a membership when it needs to.
+**Members** are your team; **share links** are for everyone else. Most collaboration in Wikistead starts as a link and becomes a membership only when it needs to.
 
 ## Where next
 

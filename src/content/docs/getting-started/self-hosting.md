@@ -3,7 +3,7 @@ title: Self-hosting
 documented-surfaces: none  # orients to the canonical self-hosting guide in the source repo, not a product surface
 ---
 
-Wikistead's Community Edition is AGPL open source, and self-hosting is a first-class path — not a demo mode. The **canonical self-hosting guide ships inside the source repository** ([`docs/self-hosting.md`](https://github.com/wikistead/wikistead/blob/main/docs/self-hosting.md)), versioned with the exact code it deploys. This page orients you; the repository guide is the one to follow.
+Wikistead's Community Edition is AGPL open source, and you can run it yourself. The **self-hosting guide ships inside the source repository** ([`docs/self-hosting.md`](https://github.com/wikistead/wikistead/blob/main/docs/self-hosting.md)), versioned with the code it deploys. This page is an overview; follow the repository guide when you set it up.
 
 ## The short version
 
@@ -47,4 +47,4 @@ Two deployment invariants worth knowing before you start (the repository guide e
 
 ## Community Edition vs Cloud
 
-A self-hosted Community deployment gets every feature **unlimited** — there is no artificial cap to unlock. [What each plan includes](/reference/plan-contents/) shows exactly what each feature controls and what the Community column comes to.
+A self-hosted Community Edition deployment has no resource limits: seats, storage, spaces and history are all unlimited. Some Cloud features — SAML single sign-on, SCIM, the audit log, Access Transparency, analytics — are not part of the Community Edition build (OIDC single sign-on is; only the SAML variant is Cloud-only). [What each plan includes](/reference/plan-contents/) lists each feature and what the Community Edition column comes to.

@@ -39,5 +39,5 @@ install that is your reverse proxy's job; the guide covers it under
 ## Availability
 
 Custom domains are a paid feature, and dropping to a plan without them releases the domains — the workspace
-returns to the hostname it was created with rather than keeping a name it is no longer paying for.
+returns to the hostname it was created with.
 Nothing is deleted; the domain can be added again after upgrading, with ownership proven again.

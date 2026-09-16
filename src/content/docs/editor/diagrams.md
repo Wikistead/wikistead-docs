@@ -29,7 +29,7 @@ Alice -> Bob: hello
 ```
 ````
 
-PlantUML is different by design: its renderer cannot be bundled (GPL, and it needs a Java runtime), so **by default the block shows its source** — always-valid Markdown, no external dependency. When your operator configures an external render service (Kroki or a PlantUML server) in the deployment, the same block renders as a diagram. Either way the text in the page is identical, so documents move between deployments without edits.
+**By default a PlantUML block shows its source.** When your deployment has a render service configured, the same block renders as a diagram — ask your operator, or see `PLANTUML_RENDER_URL` in the [environment reference](/reference/environment-variables/). The text in the page is the same either way, so documents move between deployments without edits.
 
 ## Why fences?
 

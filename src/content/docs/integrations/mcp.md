@@ -11,6 +11,16 @@ Point the assistant at your workspace's MCP endpoint, `https://<your-workspace-h
 
 Whether a member may connect an assistant at all is an admin decision, taken per sign-in connection: **Admin → Authentication** carries an *AI tool access (MCP)* switch on each connection. Turning it off refuses the connector to everyone who signs in that way, without touching how they sign in.
 
+### Connecting without a browser (API keys)
+
+OAuth needs a browser to sign in through, which does not exist for a self-hosted workspace where members sign in with a local password only, or for a headless/CLI MCP client. For those, create an [API key](/admin/api-keys/) (Settings → API keys) and send it as the Bearer token instead — the same key the REST API accepts:
+
+```
+curl -H "Authorization: Bearer wks_..." https://<your-workspace-host>/api/mcp
+```
+
+The key's own **scope** governs which tools it may call: a `read` key can call the read tools only; a `write` key can call both (still checked against your own permissions at call time, exactly as the OAuth path is). A key an admin has **narrowed** to specific capabilities or spaces cannot be used with MCP at all — narrowing is expressed per REST route, and MCP has no equivalent mapping yet, so a narrowed key is refused here rather than guessed at.
+
 ## The tools
 
 | Tool | What it does |
