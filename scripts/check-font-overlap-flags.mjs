@@ -1,6 +1,7 @@
 #!/usr/bin/env node
-// ADR-307 (wikistead repo) Phase (1): pins the Apple OVERLAP_SIMPLE/OVERLAP_COMPOUND glyf flags
-// onto docs-site's own vendored Inter faces, and the wiring that serves them.
+// ADR-307 (wikistead repo): pins the Apple OVERLAP_SIMPLE/OVERLAP_COMPOUND glyf flags onto
+// docs-site's own vendored Inter (#1312 Phase (1)), Noto Sans JP, and Plus Jakarta Sans (#1335)
+// faces, and the wiring that serves them.
 //
 // docs-site has no test runner (no vitest/jest, no *.test.* file anywhere in this repo) — every
 // existing correctness check here is a plain Node script chained into package.json's "build"
@@ -9,19 +10,21 @@
 // no third-party WOFF2 library), independently re-implemented here since docs-site cannot import
 // code across the wikistead repo boundary.
 //
-// Three things are asserted, all required for the fix to actually reach a Mac:
-//   1. every non-empty simple glyph in each of the 8 vendored files carries OVERLAP_SIMPLE, and
-//      every composite glyph's first component carries OVERLAP_COMPOUND (the flag bits);
-//   2. astro.config.mjs's customCss list contains no `@fontsource/inter/*` entry (the wiring —
-//      the vendored files are actually served, not merely sitting unused in public/fonts/inter/);
-//   3. inter.css's unicode-range values are byte-identical to the corresponding
-//      node_modules/@fontsource/inter/{400,500,600,700}.css values (the ranges served did not
-//      silently drift from what @fontsource itself defines).
+// Four things are asserted per family, all required for the fix to actually reach a Mac:
+//   1. every non-empty simple glyph in each vendored file carries OVERLAP_SIMPLE, and every
+//      composite glyph's first component carries OVERLAP_COMPOUND (the flag bits);
+//   2. the set of vendored files matches exactly what the corresponding
+//      node_modules/@fontsource/<family>/<weight>.css files discover — not a hardcoded count, since
+//      these come from upstream @fontsource and could change on a version bump;
+//   3. astro.config.mjs's customCss list contains no `@fontsource/<family>/*` entry (the wiring —
+//      the vendored files are actually served, not merely sitting unused in public/fonts/<family>/);
+//   4. <family>.css's unicode-range values are byte-identical to the corresponding upstream
+//      @fontsource CSS values (the ranges served did not silently drift from what @fontsource
+//      itself defines).
 //
-// Break-check: scripts/testdata/inter-latin-400-normal.unpatched.woff2 is a deliberately-unpatched
-// fixture (the as-shipped @fontsource file, copied before patching) — the reader must report 0
-// flagged glyphs against it, proving it can still go red, not just pass forever once the real
-// files are patched.
+// Break-check: one deliberately-unpatched fixture per family under scripts/testdata/ (the as-shipped
+// @fontsource file, copied before patching) — the reader must report 0 flagged glyphs against it,
+// proving it can still go red, not just pass forever once the real files are patched.
 //
 // "0 scanned is red": an empty or misread file must not silently report "0 problems found" — every
 // per-file scan asserts it actually found simple/composite glyphs before trusting its flag count.
@@ -31,11 +34,45 @@ import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
-const FONT_DIR = join(root, 'public/fonts/inter')
-const FIXTURE = join(root, 'scripts/testdata/inter-latin-400-normal.unpatched.woff2')
 const ASTRO_CONFIG = join(root, 'astro.config.mjs')
-const INTER_CSS = join(root, 'src/styles/inter.css')
-const FONTSOURCE_DIR = join(root, 'node_modules/@fontsource/inter')
+
+// One entry per vendored family. `weights` is the exact set of weight CSS files astro.config.mjs
+// imports today for that family — used only to know which node_modules/@fontsource/<pkg>/<weight>.css
+// files to parse; the per-weight SLICE set itself is never hardcoded, it is discovered from each of
+// those CSS files.
+const FAMILIES = [
+  {
+    pkg: 'inter',
+    weights: [400, 500, 600, 700],
+    fontDir: join(root, 'public/fonts/inter'),
+    localCss: join(root, 'src/styles/inter.css'),
+    fixture: join(root, 'scripts/testdata/inter-latin-400-normal.unpatched.woff2'),
+    fontsourceDir: join(root, 'node_modules/@fontsource/inter'),
+    // Inter is deliberately vendored for only these two ranges (ADR-307 rev4/rev5): no tracked
+    // docs-site file contains a codepoint in any of the other five ranges @fontsource/inter/NNN.css
+    // also serves, and --wks-font's fallback chain covers any that did appear. `null` (the other two
+    // families below) means "every slice the upstream CSS defines".
+    sliceFilter: new Set(['latin', 'latin-ext']),
+  },
+  {
+    pkg: 'noto-sans-jp',
+    weights: [400, 500, 700],
+    fontDir: join(root, 'public/fonts/noto-sans-jp'),
+    localCss: join(root, 'src/styles/noto-sans-jp.css'),
+    fixture: join(root, 'scripts/testdata/noto-sans-jp-latin-400-normal.unpatched.woff2'),
+    fontsourceDir: join(root, 'node_modules/@fontsource/noto-sans-jp'),
+    sliceFilter: null,
+  },
+  {
+    pkg: 'plus-jakarta-sans',
+    weights: [600],
+    fontDir: join(root, 'public/fonts/plus-jakarta-sans'),
+    localCss: join(root, 'src/styles/plus-jakarta-sans.css'),
+    fixture: join(root, 'scripts/testdata/plus-jakarta-sans-latin-600-normal.unpatched.woff2'),
+    fontsourceDir: join(root, 'node_modules/@fontsource/plus-jakarta-sans'),
+    sliceFilter: null,
+  },
+]
 
 const OVERLAP_SIMPLE = 0x40 // glyf simple-glyph flag byte, bit 6
 const OVERLAP_COMPOUND = 0x0400 // glyf composite-glyph component flags, bit 10
@@ -232,89 +269,190 @@ function readOverlapFlags(bytes) {
   return { simpleTotal, simpleFlagged, compositeTotal, compositeFlagged }
 }
 
-// ---- 1. flag-bit assertions across the 8 vendored files ----
-const files = readdirSync(FONT_DIR).filter((f) => f.endsWith('.woff2')).sort()
-if (files.length !== 8) {
-  console.error(`check-font-overlap-flags: expected 8 vendored .woff2 files in ${FONT_DIR}, found ${files.length}.`)
-  process.exit(1)
+// ---- discovery: parse an upstream @fontsource <weight>.css into {filename -> {weight, range}} ----
+//
+// Mirrors docs-site/scripts/patch-font-overlap-flags-cjk.py's discover_slices(): the comment names a
+// slice (`/* pkg-latin-400-normal */` or, for Noto Sans JP's numbered slices, `/* pkg-[7]-400-normal */`
+// with NO brackets in the filename, e.g. `pkg-7-400-normal.woff2`), and the block's own `src` filename
+// is checked against that SAME comment's slice — never accepted on trust — so a declaration whose src
+// silently points at the wrong slice/weight cannot pass unnoticed (the exact defect apps/web's sibling
+// script's discover_slices() docstring documents finding in an earlier version of this file).
+function discoverUpstreamSlices(pkg, fontsourceDir, weights, sliceFilter) {
+  const pkgEsc = pkg.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  const discovered = new Map() // filename -> { weight, range }
+  const problems = []
+  for (const weight of weights) {
+    const cssPath = join(fontsourceDir, `${weight}.css`)
+    const css = readFileSync(cssPath, 'utf8')
+    const blockRe = new RegExp(
+      `/\\*\\s*${pkgEsc}-(?:\\[(\\d+)\\]|([a-z]+(?:-[a-z]+)*))-(\\d+)-normal\\s*\\*/([\\s\\S]*?)\\n\\}`,
+      'g',
+    )
+    let matchedCount = 0
+    let keptCount = 0
+    for (const m of css.matchAll(blockRe)) {
+      matchedCount++
+      const [, rawNum, rawName, blockWeight, blockBody] = m
+      if (blockWeight !== String(weight)) {
+        problems.push(`${cssPath}: block's own comment names weight ${blockWeight}, expected ${weight}`)
+        continue
+      }
+      const slice = rawNum !== undefined ? rawNum : rawName
+      if (sliceFilter && !sliceFilter.has(slice)) continue // deliberately not vendored (e.g. Inter's non-latin ranges)
+      keptCount++
+      const srcMatch = blockBody.match(/url\(\.\/files\/([^)]+\.woff2)\)/)
+      const rangeMatch = blockBody.match(/unicode-range:\s*([^;]+);/)
+      if (!srcMatch || !rangeMatch) {
+        problems.push(`${cssPath}: block for slice '${slice}' weight ${weight} is missing a src/unicode-range`)
+        continue
+      }
+      const expectedFilename = `${pkg}-${slice}-${weight}-normal.woff2`
+      if (srcMatch[1] !== expectedFilename) {
+        problems.push(
+          `${cssPath}: slice '${slice}' weight ${weight}'s own comment names this block, but its ` +
+            `src points at '${srcMatch[1]}' instead of the expected '${expectedFilename}' — a ` +
+            `declaration silently pointing at the wrong slice/weight.`,
+        )
+        continue
+      }
+      discovered.set(expectedFilename, { weight, range: rangeMatch[1].trim() })
+    }
+    // Self-consistency: every comment block found by a simpler, independent count must have produced
+    // exactly one accepted-or-filtered-out match (minus anything already reported as a problem above).
+    const commentCount = (css.match(new RegExp(`/\\*\\s*${pkgEsc}-.+?-${weight}-normal\\s*\\*/`, 'g')) || []).length
+    if (matchedCount !== commentCount) {
+      problems.push(
+        `${cssPath}: block regex matched ${matchedCount} @font-face block(s) but the file has ` +
+          `${commentCount} '${pkg}-...-${weight}-normal' comment(s) — discovery is under-counting.`,
+      )
+    }
+    if (sliceFilter && keptCount !== sliceFilter.size) {
+      problems.push(
+        `${cssPath}: expected to find all ${sliceFilter.size} of [${[...sliceFilter].join(', ')}], found ${keptCount}.`,
+      )
+    }
+  }
+  return { discovered, problems }
 }
 
+// ---- parse the local, vendored CSS into {filename -> {weight, range}} ----
+function parseLocalCss(pkg, localCssPath) {
+  const pkgEsc = pkg.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  const css = readFileSync(localCssPath, 'utf8')
+  const re = new RegExp(
+    `font-weight:\\s*(\\d+);\\s*\\n\\s*src:\\s*url\\('/fonts/${pkgEsc}/(${pkgEsc}-[^']+\\.woff2)'\\)[^;]*;\\s*\\n\\s*unicode-range:\\s*([^;]+);`,
+    'g',
+  )
+  const local = new Map() // filename -> { weight, range }
+  for (const m of css.matchAll(re)) {
+    const [, weight, filename, range] = m
+    local.set(filename, { weight: Number(weight), range: range.trim() })
+  }
+  return local
+}
+
+// ---- run all checks, one family at a time ----
 const problems = []
-for (const file of files) {
-  const bytes = readFileSync(join(FONT_DIR, file))
-  const { simpleTotal, simpleFlagged, compositeTotal, compositeFlagged } = readOverlapFlags(bytes)
-  if (simpleTotal === 0 && compositeTotal === 0) {
-    problems.push(`${file}: scanned 0 simple and 0 composite glyphs — refusing to trust a "0 problems" read of an empty/misread file.`)
+let totalFilesScanned = 0
+
+for (const family of FAMILIES) {
+  const { pkg, weights, fontDir, localCss, fixture, fontsourceDir, sliceFilter } = family
+
+  // ---- discovery: the expected file set, derived from upstream CSS, never hardcoded ----
+  const { discovered, problems: discoveryProblems } = discoverUpstreamSlices(pkg, fontsourceDir, weights, sliceFilter)
+  problems.push(...discoveryProblems)
+  if (discovered.size === 0) {
+    problems.push(`${pkg}: discovered 0 expected files from ${fontsourceDir} — cannot validate vendored output.`)
     continue
   }
-  console.log(`${file}: scanned ${simpleTotal} simple glyph(s), ${simpleFlagged} flagged; ${compositeTotal} composite glyph(s), ${compositeFlagged} flagged.`)
-  if (simpleFlagged !== simpleTotal) {
-    problems.push(`${file}: ${simpleTotal - simpleFlagged}/${simpleTotal} simple glyph(s) missing OVERLAP_SIMPLE.`)
+
+  // ---- 1. flag-bit assertions across the vendored files, count checked against discovery ----
+  const vendoredFiles = readdirSync(fontDir).filter((f) => f.endsWith('.woff2')).sort()
+  const vendoredSet = new Set(vendoredFiles)
+  const discoveredSet = new Set(discovered.keys())
+  if (vendoredFiles.length !== discovered.size) {
+    problems.push(
+      `${pkg}: expected ${discovered.size} vendored .woff2 file(s) in ${fontDir} (from CSS discovery), ` +
+        `found ${vendoredFiles.length}.`,
+    )
   }
-  if (compositeFlagged !== compositeTotal) {
-    problems.push(`${file}: ${compositeTotal - compositeFlagged}/${compositeTotal} composite glyph(s) missing OVERLAP_COMPOUND on their first component.`)
+  for (const f of vendoredSet) {
+    if (!discoveredSet.has(f)) problems.push(`${pkg}: ${f} is vendored in ${fontDir} but was not discovered from upstream CSS (stale/extra file?).`)
   }
-}
+  for (const f of discoveredSet) {
+    if (!vendoredSet.has(f)) problems.push(`${pkg}: ${f} was discovered from upstream CSS but is missing from ${fontDir}.`)
+  }
 
-// ---- break-check: the fixture must read as UNFLAGGED, proving the reader can still go red ----
-const fixtureBytes = readFileSync(FIXTURE)
-const fixtureResult = readOverlapFlags(fixtureBytes)
-if (fixtureResult.simpleTotal === 0) {
-  problems.push('break-check fixture: scanned 0 simple glyphs — the fixture itself is empty/misread.')
-} else if (fixtureResult.simpleFlagged !== 0) {
-  problems.push(`break-check fixture: expected 0 flagged simple glyphs (it is the deliberately-unpatched original), got ${fixtureResult.simpleFlagged}/${fixtureResult.simpleTotal} — the reader cannot distinguish patched from unpatched.`)
-} else {
-  console.log(`break-check OK — fixture reads 0/${fixtureResult.simpleTotal} flagged, as expected for an unpatched file.`)
-}
-
-// ---- 2. wiring: astro.config.mjs must no longer import @fontsource/inter/*.css ----
-const astroConfig = readFileSync(ASTRO_CONFIG, 'utf8')
-const staleImport = astroConfig.match(/['"]@fontsource\/inter\/[^'"]+\.css['"]/)
-if (staleImport) {
-  problems.push(`astro.config.mjs still imports ${staleImport[0]} — Inter must be served only from the local, patched ./src/styles/inter.css.`)
-} else {
-  console.log('astro.config.mjs OK — no @fontsource/inter/*.css import remains.')
-}
-
-// ---- 3. unicode-range parity: inter.css's ranges must match @fontsource's exactly ----
-//
-// Parsed per (weight, slice) tuple, not as a flat set of range strings: membership in the set of
-// 8 kept ranges is not enough, because latin/latin-ext each repeat the SAME range string across
-// all 4 weights (e.g. every latin declaration shares "U+0000-00FF,..."). A flat `.includes()`
-// check lets one declaration drift (a bad edit, or a src pointed at the wrong slice) hide behind
-// the 3 other declarations that still carry the correct value for that range shape — it never
-// checks that THIS weight's THIS slice matches THIS weight's THIS slice upstream. Comparing by
-// tuple catches both: an edited range value (no local tuple matches its own upstream counterpart
-// any more) and a range/src mismatch (the local tuple's src file doesn't name the slice its range
-// value belongs to).
-const interCss = readFileSync(INTER_CSS, 'utf8')
-const localDecls = [...interCss.matchAll(
-  /font-weight:\s*(\d+);\s*\n\s*src:\s*url\('\/fonts\/inter\/inter-(latin(?:-ext)?)-\d+-normal\.woff2'\)[^;]*;\s*\n\s*unicode-range:\s*([^;]+);/g,
-)].map((m) => ({ weight: Number(m[1]), slice: m[2], range: m[3].trim() }))
-if (localDecls.length !== 8) {
-  problems.push(`src/styles/inter.css: expected 8 parseable (weight, slice, unicode-range) declarations (4 weights x latin/latin-ext), found ${localDecls.length}.`)
-}
-
-for (const weight of [400, 500, 600, 700]) {
-  const css = readFileSync(join(FONTSOURCE_DIR, `${weight}.css`), 'utf8')
-  for (const slice of ['latin', 'latin-ext']) {
-    const blockRe = new RegExp(`/\\* inter-${slice}-${weight}-normal \\*/[\\s\\S]*?unicode-range:\\s*([^;]+);`)
-    const m = css.match(blockRe)
-    if (!m) {
-      problems.push(`node_modules/@fontsource/inter/${weight}.css: could not find the ${slice} block to compare against.`)
+  for (const file of vendoredFiles) {
+    const bytes = readFileSync(join(fontDir, file))
+    const { simpleTotal, simpleFlagged, compositeTotal, compositeFlagged } = readOverlapFlags(bytes)
+    totalFilesScanned++
+    if (simpleTotal === 0 && compositeTotal === 0) {
+      problems.push(`${pkg}/${file}: scanned 0 simple and 0 composite glyphs — refusing to trust a "0 problems" read of an empty/misread file.`)
       continue
     }
-    const upstream = m[1].trim()
-    const local = localDecls.find((d) => d.weight === weight && d.slice === slice)
-    if (!local) {
-      problems.push(`src/styles/inter.css: no font-weight:${weight} declaration serving inter-${slice}-${weight}-normal.woff2 (expected to match @fontsource/inter/${weight}.css's ${slice} value).`)
-    } else if (local.range !== upstream) {
-      problems.push(`src/styles/inter.css: font-weight:${weight} ${slice} declaration's unicode-range does not match @fontsource/inter/${weight}.css's ${slice} value (local: ${local.range}; upstream: ${upstream}).`)
+    if (simpleFlagged !== simpleTotal) {
+      problems.push(`${pkg}/${file}: ${simpleTotal - simpleFlagged}/${simpleTotal} simple glyph(s) missing OVERLAP_SIMPLE.`)
+    }
+    if (compositeFlagged !== compositeTotal) {
+      problems.push(`${pkg}/${file}: ${compositeTotal - compositeFlagged}/${compositeTotal} composite glyph(s) missing OVERLAP_COMPOUND on their first component.`)
     }
   }
-}
-if (problems.length === 0 || !problems.some((p) => p.includes('unicode-range') || p.includes('declaration'))) {
-  console.log('unicode-range parity OK — every kept (weight, slice) declaration matches @fontsource/inter byte-for-byte.')
+  console.log(`${pkg}: scanned ${vendoredFiles.length} vendored file(s) (expected ${discovered.size} from CSS discovery).`)
+
+  // ---- break-check: the fixture must read as UNFLAGGED, proving the reader can still go red ----
+  const fixtureBytes = readFileSync(fixture)
+  const fixtureResult = readOverlapFlags(fixtureBytes)
+  if (fixtureResult.simpleTotal === 0) {
+    problems.push(`${pkg}: break-check fixture scanned 0 simple glyphs — the fixture itself is empty/misread.`)
+  } else if (fixtureResult.simpleFlagged !== 0) {
+    problems.push(`${pkg}: break-check fixture expected 0 flagged simple glyphs (it is the deliberately-unpatched original), got ${fixtureResult.simpleFlagged}/${fixtureResult.simpleTotal} — the reader cannot distinguish patched from unpatched.`)
+  } else {
+    console.log(`${pkg}: break-check OK — fixture reads 0/${fixtureResult.simpleTotal} flagged, as expected for an unpatched file.`)
+  }
+
+  // ---- 2. wiring: astro.config.mjs must no longer import @fontsource/<pkg>/*.css ----
+  const astroConfig = readFileSync(ASTRO_CONFIG, 'utf8')
+  const pkgEsc = pkg.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  const staleImport = astroConfig.match(new RegExp(`['"]@fontsource/${pkgEsc}/[^'"]+\\.css['"]`))
+  if (staleImport) {
+    problems.push(`${pkg}: astro.config.mjs still imports ${staleImport[0]} — must be served only from the local, patched ${localCss.replace(root + '/', '')}.`)
+  } else {
+    console.log(`${pkg}: astro.config.mjs OK — no @fontsource/${pkg}/*.css import remains.`)
+  }
+
+  // ---- 3. unicode-range parity: local CSS's ranges must match @fontsource's exactly ----
+  //
+  // Compared by (filename) — which already keys uniquely by (weight, slice) — not a flat set of
+  // range strings: many slices across different weights share the exact same range string (e.g.
+  // Inter's every `latin` declaration), so a flat `.includes()`/set-membership check lets one
+  // declaration drift (bad edit, or src pointed at the wrong slice) hide behind sibling declarations
+  // that still carry a correct value for that range shape. Keying by filename ties each local
+  // declaration back to the ONE upstream block it claims to serve.
+  const local = parseLocalCss(pkg, localCss)
+  if (local.size !== discovered.size) {
+    problems.push(`${pkg}: ${localCss.replace(root + '/', '')}: expected ${discovered.size} parseable (weight, filename, unicode-range) declaration(s), found ${local.size}.`)
+  }
+  let rangeMismatches = 0
+  for (const [filename, { range: upstreamRange, weight: upstreamWeight }] of discovered) {
+    const localEntry = local.get(filename)
+    if (!localEntry) {
+      problems.push(`${pkg}: ${localCss.replace(root + '/', '')}: no declaration serving ${filename} (expected to match upstream's unicode-range value).`)
+      rangeMismatches++
+      continue
+    }
+    if (localEntry.weight !== upstreamWeight) {
+      problems.push(`${pkg}: ${localCss.replace(root + '/', '')}: ${filename}'s declaration has font-weight ${localEntry.weight}, expected ${upstreamWeight}.`)
+      rangeMismatches++
+    }
+    if (localEntry.range !== upstreamRange) {
+      problems.push(`${pkg}: ${localCss.replace(root + '/', '')}: ${filename}'s unicode-range does not match upstream (local: ${localEntry.range}; upstream: ${upstreamRange}).`)
+      rangeMismatches++
+    }
+  }
+  if (rangeMismatches === 0) {
+    console.log(`${pkg}: unicode-range parity OK — every kept declaration matches @fontsource byte-for-byte.`)
+  }
 }
 
 if (problems.length) {
@@ -322,4 +460,4 @@ if (problems.length) {
   for (const p of problems) console.error('  ' + p)
   process.exit(1)
 }
-console.log(`check-font-overlap-flags OK — ${files.length} vendored file(s) fully flagged, wiring and unicode-range parity confirmed, break-check fixture still reads unflagged.`)
+console.log(`check-font-overlap-flags OK — ${totalFilesScanned} vendored file(s) across ${FAMILIES.length} families fully flagged, wiring and unicode-range parity confirmed, break-check fixtures still read unflagged.`)

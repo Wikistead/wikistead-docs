@@ -26,15 +26,15 @@ export default defineConfig({
         // #709: the faces the KIT's type tokens name, delivered the same way the product delivers
         // them (@fontsource, self-hosted, OFL) at the product's own weights. The kit carries the
         // token VALUES; these packages carry the glyphs.
-        // ADR-307 Phase (1): Inter is vendored locally (./src/styles/inter.css), not read straight
-        // from @fontsource -- the vendored copies carry the Apple OVERLAP_SIMPLE/OVERLAP_COMPOUND
-        // glyf flags @fontsource's own files omit. Noto Sans JP and Plus Jakarta Sans are untouched
-        // (Noto Sans JP is this ADR's deliberate, unpatched control).
+        // ADR-307 (#1312 Phase (1), #1335): Inter, Noto Sans JP, and Plus Jakarta Sans are all
+        // vendored locally (./src/styles/{inter,noto-sans-jp,plus-jakarta-sans}.css), not read
+        // straight from @fontsource -- the vendored copies carry the Apple
+        // OVERLAP_SIMPLE/OVERLAP_COMPOUND glyf flags @fontsource's own files omit. Regenerate with
+        // `python3 scripts/patch-font-overlap-flags.py` (Inter) or
+        // `python3 scripts/patch-font-overlap-flags-cjk.py` (Noto Sans JP, Plus Jakarta Sans).
         './src/styles/inter.css',
-        '@fontsource/noto-sans-jp/400.css',
-        '@fontsource/noto-sans-jp/500.css',
-        '@fontsource/noto-sans-jp/700.css',
-        '@fontsource/plus-jakarta-sans/600.css',
+        './src/styles/noto-sans-jp.css',
+        './src/styles/plus-jakarta-sans.css',
         './src/styles/brand.css', // #706: the pulled brand kit dresses Starlight
       ],
       defaultLocale: 'root',
