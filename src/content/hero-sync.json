@@ -5,7 +5,16 @@
       "en": "A wiki for the age of AI",
       "ja": "AI 時代の、新しい Wiki。",
       "_reviewed": "#1397 (2026-09-18): both sides landed together in this exact wording — bootstrapped here as the baseline."
+    },
+    "hero.tagline": {
+      "en": "Share a link and anyone edits with you, live — no accounts. Markdown-first, open formats, pages that link to each other, publish anywhere, self-hostable.",
+      "ja": "リンクを渡すだけで、アカウント不要のまま全員でリアルタイムに書けます。Markdown のまま書けて、リンクでつながり、どこへでも公開できて、セルフホストもできます。",
+      "_reviewed": "#1397 (2026-09-19): owner read the en/ja pair. ja named two product pillars en did not (Link First, Publish anywhere); the ruling was to ADD them to en rather than cut them from ja, because both are shipped features and are the differentiators an English reader most needs. en amended in the same change; both sides recorded here."
+    },
+    "description": {
+      "en": "A collaborative knowledge base — share a link, anyone edits together. Markdown-first, open formats, self-hostable.",
+      "ja": "共有リンクで誰でも同時編集できるナレッジベース。Markdown ファースト・オープンフォーマット・セルフホスト可能。",
+      "_reviewed": "#1397 (2026-09-19): owner read the en/ja pair. Already making the same three claims (share-link co-editing, Markdown-first/open formats, self-hostable) — no copy change needed, recorded as-is."
     }
-  },
-  "_unrecorded": "index.hero.tagline and index.description are DELIBERATELY absent — neither has a known joint-review event behind its current wording (unlike title, which #1397 just confirmed). The check reports both as open refusals until a human reads the en/ja pair for each and adds an entry, or files a copy fix if they should not match yet. See #1432's own ticket for the specific drift found in hero.tagline at design time (ja adds Link-First/Publish-anywhere claims en's tagline does not make)."
+  }
 }
