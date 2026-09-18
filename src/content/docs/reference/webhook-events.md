@@ -8,7 +8,7 @@ This page is generated from the product’s source, so it cannot drift from what
 <!--
   AUTO-GENERATED — DO NOT EDIT BY HAND.
   Source: packages/events/src/catalog.ts (EVENT_CATALOG) + apps/server/src/webhooks/egress.ts.
-  Regenerate: pnpm docs:gen   ·   Verify (CI): pnpm docs:check
+  Regenerate: pnpm docs:gen · Verify (CI): pnpm docs:check
   This is the "code is truth" domain-event reference (the EE webhook / audit surface).
 -->
 

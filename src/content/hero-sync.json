@@ -1,0 +1,11 @@
+{
+  "_comment": "#1432: records the last JOINTLY REVIEWED en/ja text for reader-facing key claims (title, hero.tagline, description) — a staleness tracker (gettext fuzzy-match / Crowdin last-synced-source shape), never a literal-translation-equality check (#718 already ruled ja prose is not a translation of en). scripts/check-hero-sync.mjs compares each language's CURRENT text against its OWN recorded value here; a mismatch means that field changed since the last joint review, not that the two languages disagree. A field with no entry here is an open refusal, not a silent pass — see the fields intentionally left unrecorded below.",
+  "index": {
+    "hero.title": {
+      "en": "A wiki for the age of AI",
+      "ja": "AI 時代の、新しい Wiki。",
+      "_reviewed": "#1397 (2026-09-18): both sides landed together in this exact wording — bootstrapped here as the baseline."
+    }
+  },
+  "_unrecorded": "index.hero.tagline and index.description are DELIBERATELY absent — neither has a known joint-review event behind its current wording (unlike title, which #1397 just confirmed). The check reports both as open refusals until a human reads the en/ja pair for each and adds an entry, or files a copy fix if they should not match yet. See #1432's own ticket for the specific drift found in hero.tagline at design time (ja adds Link-First/Publish-anywhere claims en's tagline does not make)."
+}

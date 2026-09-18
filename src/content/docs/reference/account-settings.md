@@ -8,7 +8,7 @@ This page is generated from the product’s source, so it cannot drift from what
 <!--
   AUTO-GENERATED — DO NOT EDIT BY HAND.
   Source: apps/server/src/settings-catalog.ts.
-  Regenerate: pnpm docs:gen   ·   Verify (CI): pnpm docs:check
+  Regenerate: pnpm docs:gen · Verify (CI): pnpm docs:check
   The "code is truth" account-settings reference.
 -->
 

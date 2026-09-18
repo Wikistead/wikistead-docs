@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "node scripts/check-ja-prose.mjs && node scripts/check-internal-words.mjs && node scripts/check-no-feature-completeness-claims.mjs && node scripts/check-ia-spine.mjs && node scripts/check-no-build-internals.mjs && node scripts/check-font-overlap-flags.mjs && astro build && node scripts/check-internal-links.mjs && node scripts/check-translation-coverage.mjs && node scripts/check-lang-banner.mjs",
+    "build": "node scripts/check-ja-prose.mjs && node scripts/check-internal-words.mjs && node scripts/check-no-feature-completeness-claims.mjs && node scripts/check-ia-spine.mjs && node scripts/check-no-build-internals.mjs && node scripts/check-font-overlap-flags.mjs && node scripts/check-hero-sync.mjs && astro build && node scripts/check-internal-links.mjs && node scripts/check-translation-coverage.mjs && node scripts/check-lang-banner.mjs",
     "preview": "astro preview",
     "pull:generated": "node scripts/pull-generated.mjs",
     "check:ee-badges": "node scripts/check-ee-badges.mjs",
@@ -24,6 +24,7 @@
     "check:internal-links": "node scripts/check-internal-links.mjs",
     "check:screen-declarations": "node scripts/check-screen-declarations.mjs",
     "check:lang-banner": "node scripts/check-lang-banner.mjs",
+    "check:hero-sync": "node scripts/check-hero-sync.mjs",
     "check:font-overlap-flags": "node scripts/check-font-overlap-flags.mjs"
   },
   "dependencies": {

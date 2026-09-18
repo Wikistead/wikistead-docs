@@ -1,9 +1,17 @@
 {
   "surfaces": {
     "admin-surface:ai": {
+      "baseUrlLabel": {
+        "en": "Base URL",
+        "ja": "ベース URL"
+      },
       "enableToggleLabel": {
         "en": "Enable AI for this workspace",
         "ja": "このワークスペースで AI を有効にする"
+      },
+      "providerOpenaiCompatible": {
+        "en": "Compatible endpoint (self-hosted)",
+        "ja": "互換エンドポイント（セルフホスト）"
       },
       "remove": {
         "en": "Remove configuration",
